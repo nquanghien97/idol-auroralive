@@ -23,7 +23,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <Link href="https://zalo.me/0367407464" className="fixed bottom-4 lg:bottom-12 right-4 lg:right-12">
-          <Image src="/zalo.webp" alt="zalo" width={40} height={40} />
+          <Image src="/zalo.webp" alt="zalo" width={80} height={80} />
         </Link>
       </body>
     </html>

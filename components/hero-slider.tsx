@@ -14,7 +14,7 @@ const slides = [
     highlight: "Công ty cam kết Hợp Đồng Lao Động & BHXH đầy đủ",
   },
   {
-    image: "/cozy-home-office-setup-with-laptop-ring-light-and.jpg",
+    image: "/lam-viec-tai-nha.jpg",
     title: "Làm việc tại nhà 100% linh hoạt",
     subtitle: "Livestream tại nhà • Thiết bị hỗ trợ đầy đủ • Tự do thời gian",
     highlight: "Quyền lợi đầy đủ ngay cả khi làm việc tại nhà",

@@ -21,7 +21,7 @@ export function BusinessSegments() {
         {/* Business Cards */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
           {/* Idol/Entertainment Livestream */}
-          <ScrollReveal animation="slide-right" delay={200}>
+          <ScrollReveal animation="fade-up" delay={200}>
             <Card className="group relative overflow-hidden bg-white border-2 border-[#1877f2]/20 hover:border-[#1877f2]/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
               <div className="relative h-80 overflow-hidden">
                 <img
@@ -88,7 +88,7 @@ export function BusinessSegments() {
           </ScrollReveal>
 
           {/* Product Livestream */}
-          <ScrollReveal animation="slide-left" delay={400}>
+          <ScrollReveal animation="fade-up" delay={400}>
             <Card className="group relative overflow-hidden bg-white border-2 border-[#1877f2]/20 hover:border-[#1877f2]/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
               <div className="relative h-80 overflow-hidden">
                 <img
