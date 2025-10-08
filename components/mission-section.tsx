@@ -12,26 +12,40 @@ export function MissionSection() {
     {
       icon: Target,
       title: "Sứ Mệnh",
-      content:
-        "Chúng tôi chọn lọc tinh hoa của thị trường, mang đến những sản phẩm ưu việt và kiến tạo trải nghiệm mua sắm tinh tế, tin cậy cho khách hàng.",
-      highlight: "sản phẩm ưu việt",
+      content: <p>Chúng tôi chọn lọc tinh hoa của thị trường, mang đến những <span className="text-[#1877f2]">sản phẩm ưu việt</span> và kiến tạo trải nghiệm mua sắm tinh tế, tin cậy cho khách hàng.</p>,
     },
     {
       icon: Heart,
       title: "Giá Trị Cốt Lõi",
-      values: [
-        "Tận tâm với khách hàng",
-        "Yêu thương không điều kiện",
-        "Làm đúng cam kết, luôn trách nhiệm",
-        "Trung thực tuyệt đối",
-        "Đổi mới sáng tạo mỗi ngày",
-      ],
+      content: (
+        <ul className="space-y-3">
+          <li className="flex items-start gap-2 text-gray-700">
+            <span className="text-[#1877f2] font-bold mt-1">•</span>
+            <span className="leading-relaxed">Tận tâm với khách hàng</span>
+          </li>
+          <li className="flex items-start gap-2 text-gray-700">
+            <span className="text-[#1877f2] font-bold mt-1">•</span>
+            <span className="leading-relaxed">Yêu thương không điều kiện</span>
+          </li>
+          <li className="flex items-start gap-2 text-gray-700">
+            <span className="text-[#1877f2] font-bold mt-1">•</span>
+            <span className="leading-relaxed">Làm đúng cam kết, luôn trách nhiệm</span>
+          </li>
+          <li className="flex items-start gap-2 text-gray-700">
+            <span className="text-[#1877f2] font-bold mt-1">•</span>
+            <span className="leading-relaxed">Trung thực tuyệt đối</span>
+          </li>
+          <li className="flex items-start gap-2 text-gray-700">
+            <span className="text-[#1877f2] font-bold mt-1">•</span>
+            <span className="leading-relaxed">Đổi mới sáng tạo mỗi ngày</span>
+          </li>
+        </ul>
+      )
     },
     {
       icon: TrendingUp,
       title: "Tầm nhìn",
-      content: "Đào tạo toàn diện, chuyên nghiệp và đẳng cấp: Phát triển năng lực một cách bài bản và xuất sắc.",
-      highlight: "Đào tạo toàn diện, chuyên nghiệp và đẳng cấp",
+      content: <p><span className="text-[#1877f2]">Đồng hành</span> cùng bạn từ những bước đầu tiên, cung cấp đào tạo chuyên nghiệp, thiết bị hiện đại và cơ hội <span className="text-[#1877f2]">phát triển không giới hạn</span> trong nghành giải trí và livestream.</p>,
     },
   ]
 
@@ -96,22 +110,7 @@ export function MissionSection() {
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-4 text-center text-gray-900">{slide.title}</h3>
-                    {"values" in slide ? (
-                      <ul className="space-y-3">
-                        {slide.values?.map((value, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-gray-700">
-                            <span className="text-[#1877f2] font-bold mt-1">•</span>
-                            <span className="leading-relaxed">{value}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-600 text-center leading-relaxed">
-                        {slide.content.split(slide.highlight)[0]}
-                        <span className="text-[#1877f2] font-semibold">{slide.highlight}</span>
-                        {slide.content.split(slide.highlight)[1]}
-                      </p>
-                    )}
+                    {slide.content}
                   </div>
                 </div>
               )
@@ -138,9 +137,8 @@ export function MissionSection() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentSlide === index ? "bg-[#1877f2] w-8" : "bg-gray-300 hover:bg-gray-400"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === index ? "bg-[#1877f2] w-8" : "bg-gray-300 hover:bg-gray-400"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -148,29 +146,11 @@ export function MissionSection() {
         </div>
 
         <ScrollReveal animation="scale-up" delay={400}>
-          <div className="bg-gradient-to-r from-[#1877f2] to-[#0c63d4] rounded-3xl p-12 text-white text-center shadow-2xl">
+          <div className="bg-gradient-to-r from-[#1877f2] to-[#0c63d4] rounded-3xl py-12 px-4 text-white text-center shadow-2xl">
             <h3 className="text-3xl md:text-4xl font-bold mb-8 text-balance">"Xây Dựng Tương Lai Cùng AURORA"</h3>
             <div className="space-y-6 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
               <p className="text-blue-50">
-                Tại AURORA LIVE, chúng tôi không chỉ tạo ra công việc — chúng tôi tạo nên{" "}
-                <span className="font-semibold text-white">cơ hội tỏa sáng</span> cho những người dám theo đuổi đam mê
-                sáng tạo.
-              </p>
-              <p className="text-blue-50">
-                Mỗi thành viên của AURORA là một{" "}
-                <span className="font-semibold text-white">ngôi sao trong bầu trời livestream rực rỡ</span>, được làm
-                việc trong môi trường{" "}
-                <span className="font-semibold text-white">chuyên nghiệp – linh hoạt – bền vững</span>.
-              </p>
-              <p className="text-blue-50">
-                Chúng tôi mang đến <span className="font-semibold text-white">hợp đồng chính thức</span>,{" "}
-                <span className="font-semibold text-white">bảo hiểm đầy đủ</span>,{" "}
-                <span className="font-semibold text-white">thu nhập minh bạch</span> và quan trọng hơn hết là sự công
-                nhận và phát triển lâu dài cho từng cá nhân.
-              </p>
-              <p className="text-blue-50">
-                Cùng nhau, chúng ta xây dựng một <span className="font-semibold text-white">cộng đồng sáng tạo</span> –
-                nơi đam mê trở thành sự nghiệp, và ánh sáng AURORA dẫn lối cho tương lai của bạn.
+                Tại AURORA LIVE, chúng tôi không chỉ tuyển dụng nhân viên – chúng tôi xây dựng cộng đồng những người sáng tạo nội dung chuyên nghiệp. Với hợp đồng lao động chính thức, bảo hiểm đầy đủ và môi trường làm việc linh hoạt tại nhà, chúng tôi cam kết mang đến cho bạn sự nghiệp ổn định và cơ hội phát triển bền vững trong ngành công nghiệp livestream đang bùng nổ.
               </p>
             </div>
           </div>

@@ -5,11 +5,12 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import "react-datepicker/dist/react-datepicker.css";
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Tuyển dụng livestream idol - Aurora Live',
+  description: 'Cơ hội trở thành idol livestream chuyên nghiệp với thu nhập hấp dẫn và quyền lợi đầy đủ tại Aurora Live.',
+  generator: 'aurora',
 }
 
 export default function RootLayout({

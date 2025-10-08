@@ -42,8 +42,8 @@ const benefits = [
   },
   {
     icon: GraduationCap,
-    title: "Đào tạo miễn phí",
-    description: "Khóa học chuyên nghiệp về kỹ năng livestream, makeup, styling và xây dựng thương hiệu",
+    title: "Đào tạo chuyên nghiệp",
+    description: "Đào tạo toàn diện, chuyên nghiệp và đẳng cấp: Phát triển năng lực một cách bài bản và xuất sắc về các kỹ năng livestream, xây dựng thương hiệu.",
     color: "text-accent",
     bgColor: "bg-accent/10",
     image: "/dao-tao.jpg",

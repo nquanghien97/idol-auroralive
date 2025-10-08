@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const slides = [
   {
@@ -195,10 +196,10 @@ export function HeroSlider() {
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left-10 duration-700 delay-300">
-                  <Button size="lg" className="bg-[#1877f2] hover:bg-[#166fe5] text-white text-lg h-14 px-8 shadow-lg">
+                <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left-10 duration-700 delay-300 relative z-[100]">
+                  <Link href="/dang-ky" className="bg-[#1877f2] hover:bg-[#166fe5] text-white text-lg py-4 px-8 rounded-xl duration-300 shadow-lg">
                     Đăng ký ngay
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>
