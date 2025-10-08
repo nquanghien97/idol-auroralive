@@ -28,10 +28,10 @@ export default function RootLayout({
           <Link href="tel:0818981619" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom">
             <PhoneIcon width={40} height={40} fill='white' />
           </Link>
-          <Link href="#" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom" target='blank'>
+          <Link href="https://zalo.me/0818981619" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom" target='blank'>
             <Image src="/Icon_of_Zalo.png" alt="Icon_of_Zalo" width={40} height={40} />
           </Link>
-          <Link href="/" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center shadow-custom" target='blank'>
+          <Link href="https://www.facebook.com/auroralive.vn" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center shadow-custom" target='blank'>
             <Image src="/Facebook_Messenger_logo.png" alt="Facebook_Messenger_logo" width={40} height={40} />
           </Link>
         </div>
