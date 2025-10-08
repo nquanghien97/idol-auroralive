@@ -24,7 +24,7 @@ function Popup(props: PopupProps) {
     <Modal
       open={open}
       onClose={onClose}
-      className="bg-white p-4 w-1/2"
+      className="bg-white p-4 w-5/6 lg:w-1/2"
     >
       <p className="text-center mb-4 text-2xl">{title}</p>
       <div className="mb-4">

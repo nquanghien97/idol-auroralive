@@ -182,7 +182,7 @@ function Form() {
       <Card className="p-8 border-border bg-card">
         <h3 className="text-4xl font-bold mb-6 text-center">Đăng ký hồ sơ</h3>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex items-center">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="w-[160px]">
               <p>Vị trí</p>
             </div>
@@ -230,7 +230,7 @@ function Form() {
 
           {isShowInformation && (
             <div className="space-y-4">
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Họ tên</p>
                 </div>
@@ -251,7 +251,7 @@ function Form() {
                   <p className="text-sm text-red-500">{errors.fullName.message}</p>
                 )}
               </div>
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Số điện thoại</p>
                 </div>
@@ -272,7 +272,7 @@ function Form() {
                   <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
                 )}
               </div>
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Ngày sinh</p>
                 </div>
@@ -297,7 +297,7 @@ function Form() {
                   {errors.dateOfBirth && <span className="text-[red] text-xs p-2">{errors.dateOfBirth.message}</span>}
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Giới tính</p>
                 </div>
@@ -335,7 +335,7 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Số CCCD</p>
                 </div>
@@ -357,7 +357,7 @@ function Form() {
                 )}
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Quê quán</p>
                 </div>
@@ -379,7 +379,7 @@ function Form() {
                 )}
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Nơi ở hiện tại</p>
                 </div>
@@ -401,7 +401,7 @@ function Form() {
                 )}
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Học vấn</p>
                 </div>
@@ -440,7 +440,7 @@ function Form() {
                 />
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Link tiktok</p>
                 </div>
@@ -462,7 +462,7 @@ function Form() {
                 )}
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Link Facebook</p>
                 </div>
@@ -495,7 +495,7 @@ function Form() {
 
           {isShowPersonalAttributes && (
             <div className="space-y-4">
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Điểm mạnh</p>
                 </div>
@@ -506,7 +506,7 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Điểm yếu</p>
                 </div>
@@ -517,7 +517,7 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Sở thích/Năng khiếu</p>
                 </div>
@@ -528,7 +528,7 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Ước mơ</p>
                 </div>
@@ -539,7 +539,7 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Nghề nghiệp</p>
                 </div>
@@ -561,7 +561,7 @@ function Form() {
                 )}
               </div>
 
-              <div className="flex items-center">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
                   <p>Thu nhập 12 tháng gần nhất</p>
                 </div>
@@ -587,7 +587,7 @@ function Form() {
                 <div className="flex gap-1 text-[#1877f2]">
                   <p className="text-[#1877f2]">Mục tiêu thu nhập</p>
                 </div>
-                <div className="flex items-center">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
                     <p>Sau 3 tháng</p>
                   </div>
@@ -608,7 +608,7 @@ function Form() {
                     <p className="text-sm text-red-500">{errors.incomeGoalAfter3Months.message}</p>
                   )}
                 </div>
-                <div className="flex items-center">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
                     <p>Sau 6 tháng</p>
                   </div>
@@ -629,7 +629,7 @@ function Form() {
                     <p className="text-sm text-red-500">{errors.incomeGoalAfter6Months.message}</p>
                   )}
                 </div>
-                <div className="flex items-center">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
                     <p>Thu nhập 12 tháng gần nhất</p>
                   </div>
