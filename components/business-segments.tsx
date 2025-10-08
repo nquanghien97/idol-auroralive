@@ -25,7 +25,7 @@ export function BusinessSegments() {
             <Card className="group relative overflow-hidden bg-white border-2 border-[#1877f2]/20 hover:border-[#1877f2]/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
               <div className="relative h-80 overflow-hidden">
                 <img
-                  src="/young-vietnamese-woman-livestreaming-with-phone-an.jpg"
+                  src="/minh-anh.jpg"
                   alt="Livestream Idol"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />

@@ -9,7 +9,7 @@ import Link from "next/link"
 
 const slides = [
   {
-    image: "/young-vietnamese-woman-livestreaming-with-phone-an.jpg",
+    image: "/thu-ha.jpg",
     title: "Trở thành ngôi sao livestream hàng đầu",
     subtitle: "Idol Giải trí & Bán hàng • Hợp đồng chính thức • Bảo hiểm đầy đủ • Làm việc tại nhà",
     highlight: "Công ty cam kết Hợp Đồng Lao Động & BHXH đầy đủ",
@@ -196,11 +196,11 @@ export function HeroSlider() {
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left-10 duration-700 delay-300 relative z-[100]">
+                {/* <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left-10 duration-700 delay-300 relative z-[100]">
                   <Link href="/dang-ky" className="bg-[#1877f2] hover:bg-[#166fe5] text-white text-lg py-4 px-8 rounded-xl duration-300 shadow-lg">
                     Đăng ký ngay
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

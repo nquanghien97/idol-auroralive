@@ -180,11 +180,11 @@ function Form() {
   return (
     <>
       <Card className="p-8 border-border bg-card">
-        <h3 className="text-4xl font-bold mb-6 text-center">Đăng ký hồ sơ</h3>
+        <h3 className="text-3xl lg:text-6xl font-bold mb-2 lg:mb-6 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="w-[160px]">
-              <p>Vị trí</p>
+              <p>Vị trí ứng tuyển <span className="text-[red]">*</span></p>
             </div>
             <div className="w-full">
               <Controller
@@ -222,84 +222,86 @@ function Form() {
           </div>
 
           <div>
-            <div className="cursor-pointer flex gap-1 text-[#1877f2]" onClick={() => setIsShowInformation(pre => !pre)}>
-              <p className="text-[#1877f2]">Thông tin cơ bản</p>
-              {isShowInformation ? <ArrowRight className="rotate-90 duration-300" color='currentColor' /> : <ArrowRight className="duration-300" color='currentColor' />}
+            <div className="flex justify-center">
+              <div className="flex gap-1 bg-[#1877f2] text-[#1877f2] rounded-xl py-2 justify-center w-full lg:w-1/2">
+                <p className="text-white font-bold text-xl">THÔNG TIN CƠ BẢN</p>
+              </div>
             </div>
           </div>
-
+          <div className="space-y-4">
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
+              <div className="w-[160px]">
+                <p>Họ tên <span className="text-[red]">*</span></p>
+              </div>
+              <Controller
+                control={control}
+                name="fullName"
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    value={field.value || ''}
+                    type="text"
+                    placeholder="Họ và tên"
+                    className="h-12"
+                  />
+                )}
+              />
+              {errors.fullName && (
+                <p className="text-sm text-red-500">{errors.fullName.message}</p>
+              )}
+            </div>
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
+              <div className="w-[160px]">
+                <p>Số điện thoại <span className="text-[red]">*</span></p>
+              </div>
+              <Controller
+                control={control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    value={field.value || ''}
+                    type="text"
+                    placeholder="Số điện thoại"
+                    className="h-12"
+                  />
+                )}
+              />
+              {errors.phoneNumber && (
+                <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
+              )}
+            </div>
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
+              <div className="w-[160px]">
+                <p>Ngày sinh <span className="text-[red]">*</span></p>
+              </div>
+              <div className="border border-[#e1ddde] rounded-lg w-full">
+                <Controller
+                  name="dateOfBirth"
+                  control={control}
+                  defaultValue={new Date()}
+                  render={({ field }) => (
+                    <DatePicker
+                      locale={vi}
+                      className="w-full rounded-full px-4 py-3 outline-none placeholder-[#002A9E] placeholder:italic placeholder:font-semibold"
+                      selected={field.value ? new Date(field.value) : null}
+                      onChange={(date: Date | null) => field.onChange(date)}
+                      dateFormat="dd/MM/yyyy"
+                      onBlur={field.onBlur}
+                      name={field.name}
+                      ref={field.ref}
+                    />
+                  )}
+                />
+                {errors.dateOfBirth && <span className="text-[red] text-xs p-2">{errors.dateOfBirth.message}</span>}
+              </div>
+            </div>
+          </div>
           {isShowInformation && (
             <div className="space-y-4">
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Họ tên</p>
-                </div>
-                <Controller
-                  control={control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Họ và tên"
-                      className="h-12"
-                    />
-                  )}
-                />
-                {errors.fullName && (
-                  <p className="text-sm text-red-500">{errors.fullName.message}</p>
-                )}
-              </div>
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Số điện thoại</p>
-                </div>
-                <Controller
-                  control={control}
-                  name="phoneNumber"
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Số điện thoại"
-                      className="h-12"
-                    />
-                  )}
-                />
-                {errors.phoneNumber && (
-                  <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
-                )}
-              </div>
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Ngày sinh</p>
-                </div>
-                <div className="border border-[#e1ddde] rounded-lg w-full">
-                  <Controller
-                    name="dateOfBirth"
-                    control={control}
-                    defaultValue={new Date()}
-                    render={({ field }) => (
-                      <DatePicker
-                        locale={vi}
-                        className="w-full rounded-full px-4 py-3 outline-none placeholder-[#002A9E] placeholder:italic placeholder:font-semibold"
-                        selected={field.value ? new Date(field.value) : null}
-                        onChange={(date: Date | null) => field.onChange(date)}
-                        dateFormat="dd/MM/yyyy"
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    )}
-                  />
-                  {errors.dateOfBirth && <span className="text-[red] text-xs p-2">{errors.dateOfBirth.message}</span>}
-                </div>
-              </div>
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Giới tính</p>
+                  <p>Giới tính <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
                   <Controller
@@ -337,7 +339,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Số CCCD</p>
+                  <p>Số CCCD <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -359,7 +361,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Quê quán</p>
+                  <p>Quê quán <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -381,7 +383,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Nơi ở hiện tại</p>
+                  <p>Nơi ở hiện tại <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -403,7 +405,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Học vấn</p>
+                  <p>Học vấn <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   name="education"
@@ -442,7 +444,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Link tiktok</p>
+                  <p>Link tiktok <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -464,7 +466,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Link Facebook</p>
+                  <p>Link Facebook <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -486,18 +488,25 @@ function Form() {
             </div>
           )}
 
-          <div>
-            <div className="cursor-pointer flex gap-1 text-[#1877f2]" onClick={() => setIsShowPersonalAttributes(pre => !pre)}>
-              <p className="text-[#1877f2]">Năng lực, sở thích</p>
-              {isShowPersonalAttributes ? <ArrowRight className="rotate-90 duration-300" color='currentColor' /> : <ArrowRight className="duration-300" color='currentColor' />}
+          <div className="flex justify-center">
+            <div className="flex justify-center cursor-pointer px-4 py-2 rounded-xl text-[#1877f2] bg-[#ccc] hover:opacity-75 duration-300" onClick={() => setIsShowInformation(pre => !pre)}>
+              <p>Xem thêm</p>
+              {isShowInformation ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
             </div>
           </div>
 
-          {isShowPersonalAttributes && (
-            <div className="space-y-4">
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
+          <div>
+            <div className="flex justify-center">
+              <div className="flex gap-1 bg-[#1877f2] text-[#1877f2] rounded-xl py-2 justify-center w-full lg:w-1/2">
+                <p className="text-white font-bold text-xl">NĂNG LỰC - SỞ THÍCH</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Điểm mạnh</p>
+                  <p>Điểm mạnh <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalStrengths(true)} className="cursor-pointer">
@@ -508,7 +517,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Điểm yếu</p>
+                  <p>Điểm yếu <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalWeaknesses(true)} className="cursor-pointer">
@@ -519,7 +528,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Sở thích/Năng khiếu</p>
+                  <p>Sở thích/Năng khiếu <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalHobby(true)} className="cursor-pointer">
@@ -527,10 +536,13 @@ function Form() {
                   </Alert>
                 </div>
               </div>
+          </div>
 
+          {isShowPersonalAttributes && (
+            <div className="space-y-4">
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Ước mơ</p>
+                  <p>Ước mơ <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalDream(true)} className="cursor-pointer">
@@ -541,7 +553,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Nghề nghiệp</p>
+                  <p>Nghề nghiệp <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -563,7 +575,7 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                 <div className="w-[160px]">
-                  <p>Thu nhập 12 tháng gần nhất</p>
+                  <p>Thu nhập trung bình 12 tháng gần nhất <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
@@ -573,7 +585,7 @@ function Form() {
                       {...field}
                       value={field.value || ''}
                       type="text"
-                      placeholder="Thu nhập 12 tháng gần nhất"
+                      placeholder="Thu nhập trung bình 12 tháng gần nhất"
                       className="h-12"
                     />
                   )}
@@ -589,7 +601,7 @@ function Form() {
                 </div>
                 <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
-                    <p>Sau 3 tháng</p>
+                    <p>Sau 3 tháng <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
@@ -610,7 +622,7 @@ function Form() {
                 </div>
                 <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
-                    <p>Sau 6 tháng</p>
+                    <p>Sau 6 tháng <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
@@ -631,7 +643,7 @@ function Form() {
                 </div>
                 <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
                   <div className="w-[160px]">
-                    <p>Thu nhập 12 tháng gần nhất</p>
+                    <p>Thu nhập sau 1 năm <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
@@ -653,6 +665,13 @@ function Form() {
               </div>
             </div>
           )}
+
+          <div className="flex justify-center">
+            <div className="flex justify-center cursor-pointer px-4 py-2 rounded-xl text-[#1877f2] bg-[#ccc] hover:opacity-75 duration-300" onClick={() => setIsShowPersonalAttributes(pre => !pre)}>
+              <p>Xem thêm</p>
+              {isShowPersonalAttributes ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
+            </div>
+          </div>
 
           <Button type="submit" size="lg" className="w-full h-12 bg-primary hover:bg-primary/90 cursor-pointer" disabled={isLoading}>
             {isLoading ? (

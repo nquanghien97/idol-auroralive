@@ -6,6 +6,7 @@ import './globals.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import "react-datepicker/dist/react-datepicker.css";
+import PhoneIcon from './assets/PhoneIcon'
 
 export const metadata: Metadata = {
   title: 'Tuyển dụng livestream idol - Aurora Live',
@@ -23,9 +24,17 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
         <Analytics />
-        <Link href="https://zalo.me/0367407464" className="fixed bottom-4 lg:bottom-12 right-4 lg:right-12">
-          <Image src="/zalo.webp" alt="zalo" width={80} height={80} />
-        </Link>
+        <div className="fixed bottom-4 right-4 z-[100]">
+          <Link href="tel:18001103" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom">
+            <PhoneIcon width={40} height={40} fill='#0054a5' />
+          </Link>
+          <Link href="#" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom" target='blank'>
+            <Image src="/Icon_of_Zalo.png" alt="Icon_of_Zalo" width={40} height={40} />
+          </Link>
+          <Link href="https://m.me/wowtoptangchieucao" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center shadow-custom" target='blank'>
+            <Image src="/Facebook_Messenger_logo.png" alt="Facebook_Messenger_logo" width={40} height={40} />
+          </Link>
+        </div>
       </body>
     </html>
   )
