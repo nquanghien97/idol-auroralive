@@ -10,6 +10,11 @@ export function MissionSection() {
 
   const slides = [
     {
+      icon: TrendingUp,
+      title: "Tầm nhìn",
+      content: <p>Trở thành công ty hàng đầu Việt Nam trong lĩnh vực <span className="text-[#1877f2]">đào tạo và phát triển nhân tài livestream</span>, tạo dựng nền tảng vững chắc cho sự nghiệp của mỗi cá nhân.</p>,
+    },
+    {
       icon: Target,
       title: "Sứ Mệnh",
       content: <p>Chúng tôi chọn lọc tinh hoa của thị trường, mang đến những <span className="text-[#1877f2]">sản phẩm ưu việt</span> và kiến tạo trải nghiệm mua sắm tinh tế, tin cậy cho khách hàng.</p>,
@@ -41,12 +46,7 @@ export function MissionSection() {
           </li>
         </ul>
       )
-    },
-    {
-      icon: TrendingUp,
-      title: "Tầm nhìn",
-      content: <p><span className="text-[#1877f2]">Đồng hành</span> cùng bạn từ những bước đầu tiên, cung cấp đào tạo chuyên nghiệp, thiết bị hiện đại và cơ hội <span className="text-[#1877f2]">phát triển không giới hạn</span> trong nghành giải trí và livestream.</p>,
-    },
+    }
   ]
 
   const goToSlide = (index: number) => {

@@ -9,7 +9,7 @@ import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from 'react-select';
-import { vi } from 'date-fns/locale';
+import { da, vi } from 'date-fns/locale';
 import DatePicker from 'react-datepicker';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Modal from '@/components/ui/modal';
@@ -45,6 +45,7 @@ interface FormValues {
   hometown: string;
   address: string;
   education: EDUCATION_TYPE;
+  school?: string;
   tiktokLink: string;
   facebookLink: string;
   currentJob: string;
@@ -98,19 +99,22 @@ const formSchema = yup.object({
     .oneOf(['not_graduated', 'high_school', 'vocational', 'college', 'university', 'postgraduate'])
     .required('Vui lòng chọn trình độ học vấn'),
 
+  school: yup
+    .string(),
+
   tiktokLink: yup
     .string()
     .url('Link TikTok không hợp lệ')
-    .required(),
+    .required('Vui lòng nhập link kênh Tiktok'),
 
   facebookLink: yup
     .string()
     .url('Link Facebook/Instagram không hợp lệ')
-    .required(),
+    .required('Vui lòng nhập link Facebook cá nhân'),
 
   currentJob: yup.string().required('Vui lòng nhập nghề nghiệp hiện tại'),
 
-  income12MonthsAgo: yup.string().required('Vui lòng nhập thu nhập 12 tháng trước'),
+  income12MonthsAgo: yup.string().required('Vui lòng nhập thu nhập trung bình 12 tháng trước'),
 
   incomeGoalAfter3Months: yup.string().required('Vui lòng nhập mục tiêu thu nhập sau 3 tháng'),
 
@@ -119,9 +123,25 @@ const formSchema = yup.object({
   incomeGoalAfter12Months: yup.string().required('Vui lòng nhập mục tiêu thu nhập sau 12 tháng'),
 });
 
+const vietnamesePosition = {
+  idol_livestream: 'Idol Livestream',
+  livestream_seller: 'Livestream bán hàng',
+  team_lead_seller: 'Trưởng nhóm livestream bán hàng',
+  team_lead_idol: 'Trưởng nhóm Idol Livestream'
+}
+
+const vietnameseEducation = {
+  not_graduated: 'Chưa tốt nghiệp',
+  high_school: 'Phổ thông',
+  vocational: 'Trung cấp',
+  college: 'Cao đẳng',
+  university: 'Đại học',
+  postgraduate: 'Trên Đại học'
+}
+
 function Form() {
 
-  const { handleSubmit, control, formState: { errors } } = useForm<FormValues>({
+  const { handleSubmit, control, watch, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(formSchema)
   })
 
@@ -152,11 +172,16 @@ function Form() {
 
   const id = useId()
 
+  const education = watch('education')
+  const isShowSchool = education === 'vocational' || education === 'college' || education === 'university' || education === 'postgraduate'
+
   const onSubmit = async (data: FormValues) => {
     try {
       setIsLoading(true);
       const submitData = {
         ...data,
+        position: vietnamesePosition[data.position],
+        education: vietnameseEducation[data.education],
         gender: data.gender === 'FEMALE' ? 'Nữ' : data.gender === 'MALE' ? 'Nam' : 'Khác',
         strengths: strengthsValue,
         weaknesses: weaknessesValue,
@@ -182,8 +207,8 @@ function Form() {
       <Card className="p-8 border-border bg-card">
         <h3 className="text-3xl lg:text-6xl font-bold mb-2 lg:mb-6 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-            <div className="w-[160px]">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+            <div className="lg:w-[160px]">
               <p>Vị trí ứng tuyển <span className="text-[red]">*</span></p>
             </div>
             <div className="w-full">
@@ -194,9 +219,9 @@ function Form() {
                   type OptionType = { label: string; value: POSITION_TYPE };
                   const options: OptionType[] = [
                     { label: 'Idol Livestream', value: 'idol_livestream' },
-                    { label: 'Livestream Seller', value: 'livestream_seller' },
-                    { label: 'Team Lead Seller', value: 'team_lead_seller' },
-                    { label: 'Team Lead Idol', value: 'team_lead_idol' }
+                    { label: 'Livestream bán hàng', value: 'livestream_seller' },
+                    { label: 'Trưởng nhóm livestream bán hàng', value: 'team_lead_seller' },
+                    { label: 'Trưởng nhóm Idol Livestream', value: 'team_lead_idol' }
                   ];
                   return (
                     <div className="space-y-1 h-12">
@@ -229,78 +254,85 @@ function Form() {
             </div>
           </div>
           <div className="space-y-4">
-            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-              <div className="w-[160px]">
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
                 <p>Họ tên <span className="text-[red]">*</span></p>
               </div>
               <Controller
                 control={control}
                 name="fullName"
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    value={field.value || ''}
-                    type="text"
-                    placeholder="Họ và tên"
-                    className="h-12"
-                  />
+                  <div className="space-y-1 h-12 w-full">
+                    <Input
+                      {...field}
+                      value={field.value || ''}
+                      type="text"
+                      placeholder="Họ và tên"
+                      className="h-12"
+                    />
+                    {errors.fullName && (
+                      <p className="text-sm text-red-500">{errors.fullName.message}</p>
+                    )}
+                  </div>
                 )}
               />
-              {errors.fullName && (
-                <p className="text-sm text-red-500">{errors.fullName.message}</p>
-              )}
             </div>
-            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-              <div className="w-[160px]">
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
                 <p>Số điện thoại <span className="text-[red]">*</span></p>
               </div>
               <Controller
                 control={control}
                 name="phoneNumber"
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    value={field.value || ''}
-                    type="text"
-                    placeholder="Số điện thoại"
-                    className="h-12"
-                  />
+                  <div className="space-y-1 h-12 w-full">
+                    <Input
+                      {...field}
+                      value={field.value || ''}
+                      type="text"
+                      placeholder="Số điện thoại"
+                      className="h-12"
+                    />
+                    {errors.phoneNumber && (
+                      <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
+                    )}
+                  </div>
                 )}
               />
-              {errors.phoneNumber && (
-                <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
-              )}
             </div>
-            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-              <div className="w-[160px]">
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
                 <p>Ngày sinh <span className="text-[red]">*</span></p>
               </div>
-              <div className="border border-[#e1ddde] rounded-lg w-full">
-                <Controller
-                  name="dateOfBirth"
-                  control={control}
-                  defaultValue={new Date()}
-                  render={({ field }) => (
-                    <DatePicker
-                      locale={vi}
-                      className="w-full rounded-full px-4 py-3 outline-none placeholder-[#002A9E] placeholder:italic placeholder:font-semibold"
-                      selected={field.value ? new Date(field.value) : null}
-                      onChange={(date: Date | null) => field.onChange(date)}
-                      dateFormat="dd/MM/yyyy"
-                      onBlur={field.onBlur}
-                      name={field.name}
-                      ref={field.ref}
-                    />
-                  )}
-                />
-                {errors.dateOfBirth && <span className="text-[red] text-xs p-2">{errors.dateOfBirth.message}</span>}
-              </div>
+
+              <Controller
+                name="dateOfBirth"
+                control={control}
+                defaultValue={new Date()}
+                render={({ field }) => (
+                  <div className="space-y-1 h-12 w-full">
+                    <div className="border border-[#e1ddde] rounded-lg w-full">
+                      <DatePicker
+                        locale={vi}
+                        className="w-full rounded-full px-4 py-3 outline-none placeholder-[#002A9E] placeholder:italic placeholder:font-semibold"
+                        selected={field.value ? new Date(field.value) : null}
+                        onChange={(date: Date | null) => field.onChange(date)}
+                        dateFormat="dd/MM/yyyy"
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </div>
+                    {errors.dateOfBirth && <p className="text-sm text-red-500">{errors.dateOfBirth.message}</p>}
+                  </div>
+                )}
+              />
             </div>
           </div>
           {isShowInformation && (
             <div className="space-y-4">
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Giới tính <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
@@ -337,74 +369,82 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Số CCCD <span className="text-[red]">*</span></p>
+              <div className="mb-8">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
+                  <div className="lg:w-[160px]">
+                    <p>Số CCCD <span className="text-[red]">*</span></p>
+                  </div>
+                  <Controller
+                    control={control}
+                    name="citizenIdentificationNumber"
+                    render={({ field }) => (
+                      <div className="space-y-1 h-12 w-full">
+                        <Input
+                          {...field}
+                          value={field.value || ''}
+                          type="text"
+                          placeholder="Số CCCD"
+                          className="h-12"
+                        />
+                        {errors.citizenIdentificationNumber && (
+                          <p className="text-sm text-red-500">{errors.citizenIdentificationNumber.message}</p>
+                        )}
+                      </div>
+                    )}
+                  />
                 </div>
-                <Controller
-                  control={control}
-                  name="citizenIdentificationNumber"
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Số CCCD"
-                      className="h-12"
-                    />
-                  )}
-                />
-                {errors.citizenIdentificationNumber && (
-                  <p className="text-sm text-red-500">{errors.citizenIdentificationNumber.message}</p>
-                )}
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Quê quán <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="hometown"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Quê quán"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Quê quán"
+                        className="h-12"
+                      />
+                      {errors.hometown && (
+                        <p className="text-sm text-red-500">{errors.hometown.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.hometown && (
-                  <p className="text-sm text-red-500">{errors.hometown.message}</p>
-                )}
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Nơi ở hiện tại <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="address"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Nơi ở hiện tại"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Nơi ở hiện tại"
+                        className="h-12"
+                      />
+                      {errors.address && (
+                        <p className="text-sm text-red-500">{errors.address.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.address && (
-                  <p className="text-sm text-red-500">{errors.address.message}</p>
-                )}
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Học vấn <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
@@ -442,48 +482,78 @@ function Form() {
                 />
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              {isShowSchool && (
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                  <div className="lg:w-[160px]">
+                    <p>Tên trường <span className="text-[red]">*</span></p>
+                  </div>
+                  <Controller
+                    control={control}
+                    name="school"
+                    render={({ field }) => (
+                      <div className="space-y-1 h-12 w-full">
+                        <Input
+                          {...field}
+                          value={field.value || ''}
+                          type="text"
+                          placeholder="Tên trường"
+                          className="h-12"
+                        />
+                        {errors.school && (
+                          <p className="text-sm text-red-500">{errors.school.message}</p>
+                        )}
+                      </div>
+                    )}
+                  />
+                </div>
+              )}
+
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Link tiktok <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="tiktokLink"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Link Tiktok"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Link Tiktok"
+                        className="h-12"
+                      />
+                      {errors.tiktokLink && (
+                        <p className="text-sm text-red-500">{errors.tiktokLink.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.tiktokLink && (
-                  <p className="text-sm text-red-500">{errors.tiktokLink.message}</p>
-                )}
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Link Facebook <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="facebookLink"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Link Facebook"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Link Facebook"
+                        className="h-12"
+                      />
+                      {errors.facebookLink && (
+                        <p className="text-sm text-red-500">{errors.facebookLink.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.facebookLink && (
-                  <p className="text-sm text-red-500">{errors.facebookLink.message}</p>
-                )}
               </div>
             </div>
           )}
@@ -504,44 +574,44 @@ function Form() {
           </div>
 
           <div className="space-y-4">
-            <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Điểm mạnh <span className="text-[red]">*</span></p>
-                </div>
-                <div className="w-full">
-                  <Alert onClick={() => setIsOpenModalStrengths(true)} className="cursor-pointer">
-                    <AlertDescription>{strengthsValue}</AlertDescription>
-                  </Alert>
-                </div>
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
+                <p>Điểm mạnh <span className="text-[red]">*</span></p>
               </div>
+              <div className="w-full">
+                <Alert onClick={() => setIsOpenModalStrengths(true)} className="cursor-pointer">
+                  <AlertDescription>{strengthsValue}</AlertDescription>
+                </Alert>
+              </div>
+            </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Điểm yếu <span className="text-[red]">*</span></p>
-                </div>
-                <div className="w-full">
-                  <Alert onClick={() => setIsOpenModalWeaknesses(true)} className="cursor-pointer">
-                    <AlertDescription>{weaknessesValue}</AlertDescription>
-                  </Alert>
-                </div>
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
+                <p>Điểm yếu <span className="text-[red]">*</span></p>
               </div>
+              <div className="w-full">
+                <Alert onClick={() => setIsOpenModalWeaknesses(true)} className="cursor-pointer">
+                  <AlertDescription>{weaknessesValue}</AlertDescription>
+                </Alert>
+              </div>
+            </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
-                  <p>Sở thích/Năng khiếu <span className="text-[red]">*</span></p>
-                </div>
-                <div className="w-full">
-                  <Alert onClick={() => setIsOpenModalHobby(true)} className="cursor-pointer">
-                    <AlertDescription>{hobbyValue}</AlertDescription>
-                  </Alert>
-                </div>
+            <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+              <div className="lg:w-[160px]">
+                <p>Sở thích/Năng khiếu <span className="text-[red]">*</span></p>
               </div>
+              <div className="w-full">
+                <Alert onClick={() => setIsOpenModalHobby(true)} className="cursor-pointer">
+                  <AlertDescription>{hobbyValue}</AlertDescription>
+                </Alert>
+              </div>
+            </div>
           </div>
 
           {isShowPersonalAttributes && (
             <div className="space-y-4">
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Ước mơ <span className="text-[red]">*</span></p>
                 </div>
                 <div className="w-full">
@@ -551,116 +621,126 @@ function Form() {
                 </div>
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Nghề nghiệp <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="currentJob"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Nghề nghiệp"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Nghề nghiệp"
+                        className="h-12"
+                      />
+                      {errors.currentJob && (
+                        <p className="text-sm text-red-500">{errors.currentJob.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.currentJob && (
-                  <p className="text-sm text-red-500">{errors.currentJob.message}</p>
-                )}
               </div>
 
-              <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                <div className="w-[160px]">
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Thu nhập trung bình 12 tháng gần nhất <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
                   control={control}
                   name="income12MonthsAgo"
                   render={({ field }) => (
-                    <Input
-                      {...field}
-                      value={field.value || ''}
-                      type="text"
-                      placeholder="Thu nhập trung bình 12 tháng gần nhất"
-                      className="h-12"
-                    />
+                    <div className="space-y-1 h-12 w-full">
+                      <Input
+                        {...field}
+                        value={field.value || ''}
+                        type="text"
+                        placeholder="Thu nhập trung bình 12 tháng gần nhất"
+                        className="h-12"
+                      />
+                      {errors.income12MonthsAgo && (
+                        <p className="text-sm text-red-500">{errors.income12MonthsAgo.message}</p>
+                      )}
+                    </div>
                   )}
                 />
-                {errors.income12MonthsAgo && (
-                  <p className="text-sm text-red-500">{errors.income12MonthsAgo.message}</p>
-                )}
               </div>
 
               <div className="space-y-4">
                 <div className="flex gap-1 text-[#1877f2]">
                   <p className="text-[#1877f2]">Mục tiêu thu nhập</p>
                 </div>
-                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                  <div className="w-[160px]">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                  <div className="lg:w-[160px]">
                     <p>Sau 3 tháng <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
                     name="incomeGoalAfter3Months"
                     render={({ field }) => (
-                      <Input
-                        {...field}
-                        value={field.value || ''}
-                        type="text"
-                        placeholder="Sau 3 tháng"
-                        className="h-12"
-                      />
+                      <div className="space-y-1 h-12 w-full">
+                        <Input
+                          {...field}
+                          value={field.value || ''}
+                          type="text"
+                          placeholder="Sau 3 tháng"
+                          className="h-12"
+                        />
+                        {errors.incomeGoalAfter3Months && (
+                          <p className="text-sm text-red-500">{errors.incomeGoalAfter3Months.message}</p>
+                        )}
+                      </div>
                     )}
                   />
-                  {errors.incomeGoalAfter3Months && (
-                    <p className="text-sm text-red-500">{errors.incomeGoalAfter3Months.message}</p>
-                  )}
                 </div>
-                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                  <div className="w-[160px]">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                  <div className="lg:w-[160px]">
                     <p>Sau 6 tháng <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
                     name="incomeGoalAfter6Months"
                     render={({ field }) => (
-                      <Input
-                        {...field}
-                        value={field.value || ''}
-                        type="text"
-                        placeholder="Sau 6 tháng"
-                        className="h-12"
-                      />
+                      <div className="space-y-1 h-12 w-full">
+                        <Input
+                          {...field}
+                          value={field.value || ''}
+                          type="text"
+                          placeholder="Sau 6 tháng"
+                          className="h-12"
+                        />
+                        {errors.incomeGoalAfter6Months && (
+                          <p className="text-sm text-red-500">{errors.incomeGoalAfter6Months.message}</p>
+                        )}
+                      </div>
                     )}
                   />
-                  {errors.incomeGoalAfter6Months && (
-                    <p className="text-sm text-red-500">{errors.incomeGoalAfter6Months.message}</p>
-                  )}
                 </div>
-                <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-                  <div className="w-[160px]">
+                <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                  <div className="lg:w-[160px]">
                     <p>Thu nhập sau 1 năm <span className="text-[red]">*</span></p>
                   </div>
                   <Controller
                     control={control}
                     name="incomeGoalAfter12Months"
                     render={({ field }) => (
-                      <Input
-                        {...field}
-                        value={field.value || ''}
-                        type="text"
-                        placeholder="Sau 1 năm"
-                        className="h-12"
-                      />
+                      <div className="space-y-1 h-12 w-full">
+                        <Input
+                          {...field}
+                          value={field.value || ''}
+                          type="text"
+                          placeholder="Sau 1 năm"
+                          className="h-12"
+                        />
+                        {errors.incomeGoalAfter6Months && (
+                          <p className="text-sm text-red-500">{errors.incomeGoalAfter6Months.message}</p>
+                        )}
+                      </div>
                     )}
                   />
-                  {errors.incomeGoalAfter6Months && (
-                    <p className="text-sm text-red-500">{errors.incomeGoalAfter6Months.message}</p>
-                  )}
                 </div>
               </div>
             </div>
