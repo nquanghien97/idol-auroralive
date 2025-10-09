@@ -9,11 +9,9 @@ import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from 'react-select';
-import { da, vi } from 'date-fns/locale';
+import { vi } from 'date-fns/locale';
 import DatePicker from 'react-datepicker';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import Modal from '@/components/ui/modal';
-import { Textarea } from '@/components/ui/textarea';
 import Popup from './Popup';
 
 type POSITION_TYPE =
@@ -321,6 +319,10 @@ function Form() {
                         onBlur={field.onBlur}
                         name={field.name}
                         ref={field.ref}
+
+                        showYearDropdown
+                        scrollableYearDropdown
+                        yearDropdownItemNumber={100}
                       />
                     </div>
                     {errors.dateOfBirth && <p className="text-sm text-red-500">{errors.dateOfBirth.message}</p>}
