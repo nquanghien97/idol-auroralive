@@ -75,9 +75,9 @@ export function Header() {
             >
               Câu chuyện
             </a>
-            <Button size="sm" className="w-full bg-primary hover:bg-primary/90">
+            <Link href="/dang-ky" className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 text-center rounded-sm duration-300">
               Ứng tuyển ngay
-            </Button>
+            </Link>
           </nav>
         )}
       </div>
