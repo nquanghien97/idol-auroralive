@@ -53,6 +53,7 @@ interface FormValues {
   incomeGoalAfter3Months: string;
   incomeGoalAfter6Months: string;
   incomeGoalAfter12Months: string;
+  fileCv: File[]
 }
 
 const formSchema = yup.object({
@@ -121,6 +122,17 @@ const formSchema = yup.object({
   incomeGoalAfter6Months: yup.string().required('Vui lòng nhập mục tiêu thu nhập sau 6 tháng'),
 
   incomeGoalAfter12Months: yup.string().required('Vui lòng nhập mục tiêu thu nhập sau 12 tháng'),
+
+  fileCv: yup
+    .mixed<File[]>()
+    .required('Bạn cần đính kèm CV')
+    .test('required', 'Bạn cần đính kèm CV', (value: File[] | undefined) => {
+      return !!value && !!value.length
+    })
+    .test('fileSize', 'File có dung lượng quá lớn', (value: File[] | undefined) => {
+      if (!value || !value.length) return true
+      return value[0].size < 5120000
+    })
 });
 
 const vietnamesePosition = {
@@ -142,7 +154,7 @@ const vietnameseEducation = {
 
 function Form() {
 
-  const { handleSubmit, control, watch, formState: { errors } } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(formSchema)
   })
 
@@ -169,7 +181,7 @@ function Form() {
   const dreamRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalDream, setIsOpenModalDream] = useState(false)
 
-   // kinh nghiệm làm việc
+  // kinh nghiệm làm việc
   const [experienceValue, setExperienceValue] = useState('Kinh nghiệm làm việc')
   const experienceRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalExperience, setIsOpenModalExperience] = useState(false)
@@ -178,6 +190,7 @@ function Form() {
 
   const id = useId()
 
+  const selectedFile = watch('fileCv') as File[]
   const education = watch('education')
   const isShowSchool = education === 'vocational' || education === 'college' || education === 'university' || education === 'postgraduate'
 
@@ -195,12 +208,13 @@ function Form() {
         dream: dreamValue,
         experience: experienceValue
       }
+
+      const formData = new FormData()
+      formData.append('data', JSON.stringify(submitData))
+      formData.append('file', data.fileCv[0])
       await fetch('/api/submit-registration', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submitData),
+        body: formData,
       });
       toast.success('Bạn đã ứng tuyển thành công!')
     } catch (err) {
@@ -776,6 +790,25 @@ function Form() {
               <p>Xem thêm</p>
               {isShowPersonalAttributes ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
             </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex flex-col mb-2 relative">
+              <p className="mb-2 font-semibold">Đính kèm cv của bạn* <span className="font-normal text-xs">(Dung lượng tối đa 5MB)</span></p>
+              <label htmlFor="resume" className="w-full py-8 border-2 border-[#ccc] border-dashed text-center hover:bg-[#f8f8f8] duration-300 cursor-pointer">
+                <div className="flex flex-col">
+                  <input
+                    accept="application/pdf"
+                    type="file"
+                    id="resume"
+                    className="inline-block m-auto"
+                    {...register('fileCv')}
+                  />
+                </div>
+              </label>
+            </div>
+            {(selectedFile && selectedFile[0]) && <p className="font-normal text-xs">Dung lượng file hiện tại: {(selectedFile?.[0].size / 1024 / 1024).toFixed(2)} MB</p>}
+            <p className="text-[red] text-xs">{errors.fileCv?.message}</p>
           </div>
 
           <Button type="submit" size="lg" className="w-full h-12 bg-primary hover:bg-primary/90 cursor-pointer" disabled={isLoading}>
