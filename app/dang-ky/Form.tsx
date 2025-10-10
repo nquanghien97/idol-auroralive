@@ -13,12 +13,14 @@ import { vi } from 'date-fns/locale';
 import DatePicker from 'react-datepicker';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Popup from './Popup';
+import { ToastContainer, toast } from 'react-toastify';
 
 type POSITION_TYPE =
   | 'idol_livestream'
   | 'livestream_seller'
   | 'team_lead_seller'
-  | 'team_lead_idol';
+  | 'team_lead_idol'
+  | 'hr_admin'
 
 type EDUCATION_TYPE =
   | 'not_graduated'
@@ -55,8 +57,8 @@ interface FormValues {
 
 const formSchema = yup.object({
   position: yup
-    .mixed<'idol_livestream' | 'livestream_seller' | 'team_lead_seller' | 'team_lead_idol'>()
-    .oneOf(['idol_livestream', 'livestream_seller', 'team_lead_seller', 'team_lead_idol'])
+    .mixed<'idol_livestream' | 'livestream_seller' | 'team_lead_seller' | 'team_lead_idol' | 'hr_admin'>()
+    .oneOf(['idol_livestream', 'livestream_seller', 'team_lead_seller', 'team_lead_idol', 'hr_admin'])
     .required('Vui lòng chọn vị trí mong muốn'),
 
   fullName: yup.string().required('Họ và tên là bắt buộc'),
@@ -125,7 +127,8 @@ const vietnamesePosition = {
   idol_livestream: 'Idol Livestream',
   livestream_seller: 'Livestream bán hàng',
   team_lead_seller: 'Trưởng nhóm livestream bán hàng',
-  team_lead_idol: 'Trưởng nhóm Idol Livestream'
+  team_lead_idol: 'Trưởng nhóm Idol Livestream',
+  hr_admin: 'Hành chính nhân sự'
 }
 
 const vietnameseEducation = {
@@ -166,6 +169,11 @@ function Form() {
   const dreamRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalDream, setIsOpenModalDream] = useState(false)
 
+   // kinh nghiệm làm việc
+  const [experienceValue, setExperienceValue] = useState('Kinh nghiệm làm việc')
+  const experienceRef = useRef<HTMLTextAreaElement>(null)
+  const [isOpenModalExperience, setIsOpenModalExperience] = useState(false)
+
   const [isLoading, setIsLoading] = useState(false)
 
   const id = useId()
@@ -184,7 +192,8 @@ function Form() {
         strengths: strengthsValue,
         weaknesses: weaknessesValue,
         hobby: hobbyValue,
-        dream: dreamValue
+        dream: dreamValue,
+        experience: experienceValue
       }
       await fetch('/api/submit-registration', {
         method: 'POST',
@@ -193,8 +202,10 @@ function Form() {
         },
         body: JSON.stringify(submitData),
       });
+      toast.success('Bạn đã ứng tuyển thành công!')
     } catch (err) {
       console.log(err)
+      toast.error('Có lỗi xảy ra, vui lòng thử lại sau!')
     } finally {
       setIsLoading(false)
     }
@@ -219,7 +230,8 @@ function Form() {
                     { label: 'Idol Livestream', value: 'idol_livestream' },
                     { label: 'Livestream bán hàng', value: 'livestream_seller' },
                     { label: 'Trưởng nhóm livestream bán hàng', value: 'team_lead_seller' },
-                    { label: 'Trưởng nhóm Idol Livestream', value: 'team_lead_idol' }
+                    { label: 'Trưởng nhóm Idol Livestream', value: 'team_lead_idol' },
+                    { label: 'Hành chính nhân sự', value: 'hr_admin' }
                   ];
                   return (
                     <div className="space-y-1 h-12">
@@ -649,6 +661,17 @@ function Form() {
 
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
                 <div className="lg:w-[160px]">
+                  <p>Kinh nghiệm làm việc <span className="text-[red]">*</span></p>
+                </div>
+                <div className="w-full">
+                  <Alert onClick={() => setIsOpenModalExperience(true)} className="cursor-pointer">
+                    <AlertDescription>{experienceValue}</AlertDescription>
+                  </Alert>
+                </div>
+              </div>
+
+              <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+                <div className="lg:w-[160px]">
                   <p>Thu nhập trung bình 12 tháng gần nhất <span className="text-[red]">*</span></p>
                 </div>
                 <Controller
@@ -803,6 +826,16 @@ function Form() {
         setValue={setDreamValue}
         title="Ước mơ của bạn"
       />
+
+      <Popup
+        open={isOpenModalExperience}
+        onClose={() => setIsOpenModalExperience(false)}
+        refValue={experienceRef}
+        setValue={setExperienceValue}
+        title="Kinh nghiệm làm việc của bạn"
+      />
+
+      <ToastContainer />
     </>
   )
 }

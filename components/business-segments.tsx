@@ -1,6 +1,6 @@
 "use client"
 
-import { Sparkles, ShoppingBag } from "lucide-react"
+import { Sparkles, ShoppingBag, Users } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
@@ -114,7 +114,7 @@ export function BusinessSegments() {
                 <p className="text-gray-600 leading-relaxed">
                   <span className="text-[#1877f2]">AURORA LIVE</span> đồng hành cùng bạn trên hành trình trở thành chuyên gia livestream bán hàng, nơi bạn không chỉ kiếm được thu nhập cao mà còn xây dựng thương hiệu cá nhân uy tín.
                 </p>
-                
+
                 <ul className="space-y-3 pt-4">
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">

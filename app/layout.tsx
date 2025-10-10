@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import PhoneIcon from './assets/PhoneIcon'
 
 export const metadata: Metadata = {
-  title: 'Tuyển dụng livestream idol - Aurora Live',
+  title: 'Công ty Aurora Live',
   description: 'Cơ hội trở thành idol livestream chuyên nghiệp với thu nhập hấp dẫn và quyền lợi đầy đủ tại Aurora Live.',
   generator: 'aurora',
 }
