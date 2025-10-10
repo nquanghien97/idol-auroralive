@@ -53,7 +53,7 @@ interface FormValues {
   incomeGoalAfter3Months: string;
   incomeGoalAfter6Months: string;
   incomeGoalAfter12Months: string;
-  fileCv: File[]
+  fileCv?: File[]
 }
 
 const formSchema = yup.object({
@@ -125,7 +125,6 @@ const formSchema = yup.object({
 
   fileCv: yup
     .mixed<File[]>()
-    .required('Bạn cần đính kèm CV')
     .test('required', 'Bạn cần đính kèm CV', (value: File[] | undefined) => {
       return !!value && !!value.length
     })
@@ -211,7 +210,9 @@ function Form() {
 
       const formData = new FormData()
       formData.append('data', JSON.stringify(submitData))
-      formData.append('file', data.fileCv[0])
+      if(data.fileCv) {
+        formData.append('file', data.fileCv[0])
+      }
       await fetch('/api/submit-registration', {
         method: 'POST',
         body: formData,
