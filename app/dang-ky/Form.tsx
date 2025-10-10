@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { ArrowDown, ArrowRight } from 'lucide-react'
-import React, { useId, useRef, useState } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -125,9 +125,6 @@ const formSchema = yup.object({
 
   fileCv: yup
     .mixed<File[]>()
-    .test('required', 'Bạn cần đính kèm CV', (value: File[] | undefined) => {
-      return !!value && !!value.length
-    })
     .test('fileSize', 'File có dung lượng quá lớn', (value: File[] | undefined) => {
       if (!value || !value.length) return true
       return value[0].size < 5120000
@@ -153,41 +150,73 @@ const vietnameseEducation = {
 
 function Form() {
 
-  const { register, handleSubmit, control, watch, formState: { errors } } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, reset, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(formSchema)
   })
 
-  const [isShowInformation, setIsShowInformation] = useState(false);
+  const [isShowInformation, setIsShowInformation] = useState(true);
   const [isShowPersonalAttributes, setIsShowPersonalAttributes] = useState(false);
 
   // điểm mạnh
-  const [strengthsValue, setStrengthsValue] = useState('Điểm mạnh')
+  const [strengthsValue, setStrengthsValue] = useState('')
   const strengthsRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalStrengths, setIsOpenModalStrengths] = useState(false)
 
   // điểm yếu
-  const [weaknessesValue, setWeaknessesValue] = useState('Điểm yếu')
+  const [weaknessesValue, setWeaknessesValue] = useState('')
   const weaknessesRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalWeaknesses, setIsOpenModalWeaknesses] = useState(false)
 
   // sở thích/năng khiếu
-  const [hobbyValue, setHobbyValue] = useState('Sở thích/Năng khiếu')
+  const [hobbyValue, setHobbyValue] = useState('')
   const hobbyRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalHobby, setIsOpenModalHobby] = useState(false)
 
   // ước mơ
-  const [dreamValue, setDreamValue] = useState('Ước mơ')
+  const [dreamValue, setDreamValue] = useState('')
   const dreamRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalDream, setIsOpenModalDream] = useState(false)
 
   // kinh nghiệm làm việc
-  const [experienceValue, setExperienceValue] = useState('Kinh nghiệm làm việc')
+  const [experienceValue, setExperienceValue] = useState('')
   const experienceRef = useRef<HTMLTextAreaElement>(null)
   const [isOpenModalExperience, setIsOpenModalExperience] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
 
   const id = useId()
+
+  const allValues = watch()
+
+  useEffect(() => {
+    const dataSaved = localStorage.getItem('data')
+    if (dataSaved) {
+      try {
+        const parsed = JSON.parse(dataSaved)
+        setStrengthsValue(parsed.strengths)
+        setWeaknessesValue(parsed.weaknesses)
+        setHobbyValue(parsed.hobby)
+        setDreamValue(parsed.dream)
+        setExperienceValue(parsed.experience)
+        reset(parsed)
+      } catch (err) {
+        console.error("Error parsing saved form data:", err)
+      }
+
+    }
+  }, [control])
+
+  useEffect(() => {
+    const dataSubmit = {
+      ...allValues,
+      strengths: strengthsValue,
+      weaknesses: weaknessesValue,
+      hobby: hobbyValue,
+      dream: dreamValue,
+      experience: experienceValue
+    }
+    localStorage.setItem('data', JSON.stringify(dataSubmit))
+  }, [allValues])
 
   const selectedFile = watch('fileCv') as File[]
   const education = watch('education')
@@ -210,7 +239,7 @@ function Form() {
 
       const formData = new FormData()
       formData.append('data', JSON.stringify(submitData))
-      if(data.fileCv) {
+      if (data.fileCv) {
         formData.append('file', data.fileCv[0])
       }
       await fetch('/api/submit-registration', {
@@ -589,7 +618,7 @@ function Form() {
 
           <div className="flex justify-center">
             <div className="flex justify-center cursor-pointer px-4 py-2 rounded-xl text-[#1877f2] bg-[#ccc] hover:opacity-75 duration-300" onClick={() => setIsShowInformation(pre => !pre)}>
-              <p>Xem thêm</p>
+              {isShowInformation ? <p>Thu gọn</p> : <p>Xem thêm</p>}
               {isShowInformation ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
             </div>
           </div>
@@ -609,7 +638,7 @@ function Form() {
               </div>
               <div className="w-full">
                 <Alert onClick={() => setIsOpenModalStrengths(true)} className="cursor-pointer">
-                  <AlertDescription>{strengthsValue}</AlertDescription>
+                  <AlertDescription>{strengthsValue || 'Điểm mạnh'}</AlertDescription>
                 </Alert>
               </div>
             </div>
@@ -620,7 +649,7 @@ function Form() {
               </div>
               <div className="w-full">
                 <Alert onClick={() => setIsOpenModalWeaknesses(true)} className="cursor-pointer">
-                  <AlertDescription>{weaknessesValue}</AlertDescription>
+                  <AlertDescription>{weaknessesValue || 'Điểm yếu'}</AlertDescription>
                 </Alert>
               </div>
             </div>
@@ -631,7 +660,7 @@ function Form() {
               </div>
               <div className="w-full">
                 <Alert onClick={() => setIsOpenModalHobby(true)} className="cursor-pointer">
-                  <AlertDescription>{hobbyValue}</AlertDescription>
+                  <AlertDescription>{hobbyValue || 'Sở thích/Năng khiếu'}</AlertDescription>
                 </Alert>
               </div>
             </div>
@@ -645,7 +674,7 @@ function Form() {
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalDream(true)} className="cursor-pointer">
-                    <AlertDescription>{dreamValue}</AlertDescription>
+                    <AlertDescription>{dreamValue || 'Ước mơ'}</AlertDescription>
                   </Alert>
                 </div>
               </div>
@@ -680,7 +709,7 @@ function Form() {
                 </div>
                 <div className="w-full">
                   <Alert onClick={() => setIsOpenModalExperience(true)} className="cursor-pointer">
-                    <AlertDescription>{experienceValue}</AlertDescription>
+                    <AlertDescription>{experienceValue || 'Kinh nghiệm làm việc'}</AlertDescription>
                   </Alert>
                 </div>
               </div>
@@ -834,6 +863,7 @@ function Form() {
         onClose={() => setIsOpenModalStrengths(false)}
         refValue={strengthsRef}
         setValue={setStrengthsValue}
+        value={strengthsValue}
         title="Điểm mạnh của bạn"
       />
 
@@ -842,6 +872,7 @@ function Form() {
         onClose={() => setIsOpenModalWeaknesses(false)}
         refValue={weaknessesRef}
         setValue={setWeaknessesValue}
+        value={weaknessesValue}
         title="Điểm yếu của bạn"
       />
 
@@ -850,6 +881,7 @@ function Form() {
         onClose={() => setIsOpenModalHobby(false)}
         refValue={hobbyRef}
         setValue={setHobbyValue}
+        value={hobbyValue}
         title="Sở thích/Năng khiếu của bạn"
       />
 
@@ -858,6 +890,7 @@ function Form() {
         onClose={() => setIsOpenModalDream(false)}
         refValue={dreamRef}
         setValue={setDreamValue}
+        value={dreamValue}
         title="Ước mơ của bạn"
       />
 
@@ -866,6 +899,7 @@ function Form() {
         onClose={() => setIsOpenModalExperience(false)}
         refValue={experienceRef}
         setValue={setExperienceValue}
+        value={experienceValue}
         title="Kinh nghiệm làm việc của bạn"
       />
 

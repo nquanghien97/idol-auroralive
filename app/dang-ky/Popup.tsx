@@ -8,6 +8,7 @@ interface PopupProps {
   onClose: () => void
   refValue: React.RefObject<HTMLTextAreaElement | null>
   setValue: (value: React.SetStateAction<string>) => void
+  value: string
   title: string
 }
 
@@ -17,7 +18,8 @@ function Popup(props: PopupProps) {
     onClose,
     refValue,
     setValue,
-    title
+    title,
+    value
   } = props
 
   return (
@@ -28,7 +30,7 @@ function Popup(props: PopupProps) {
     >
       <p className="text-center mb-4 text-2xl">{title}</p>
       <div className="mb-4">
-        <Textarea rows={8} placeholder={title} ref={refValue} />
+        <Textarea rows={8} placeholder={title} ref={refValue} defaultValue={value} />
       </div>
       <div className="flex justify-end gap-4">
         <Button variant="destructive" className="cursor-pointer" onClick={onClose}>Hủy</Button>

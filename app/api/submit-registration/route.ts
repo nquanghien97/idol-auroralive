@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { formatDate } from "@/utils/formatDate";
 
 const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
 
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     const data = JSON.parse(dataRaw);
 
     let uploadedFileUrl = "";
-    if (file) {
+    if (file && file.size > 0) {
       const fileName = `${Date.now()}-${file.name}`;
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
@@ -55,6 +56,7 @@ export async function POST(request: NextRequest) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...data,
+        time: formatDate(new Date(Date.now())),
         fileUrl: uploadedFileUrl,
       }),
     });
