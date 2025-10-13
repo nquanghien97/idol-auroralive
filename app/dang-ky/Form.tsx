@@ -14,6 +14,7 @@ import DatePicker from 'react-datepicker';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Popup from './Popup';
 import { ToastContainer, toast } from 'react-toastify';
+import { CalendarVi } from '@/components/ui/datepicker';
 
 type POSITION_TYPE =
   | 'idol_livestream'
@@ -236,7 +237,6 @@ function Form() {
         dream: dreamValue,
         experience: experienceValue
       }
-
       const formData = new FormData()
       formData.append('data', JSON.stringify(submitData))
       if (data.fileCv) {
@@ -366,7 +366,7 @@ function Form() {
                 render={({ field }) => (
                   <div className="space-y-1 h-12 w-full">
                     <div className="border border-[#e1ddde] rounded-lg w-full">
-                      <DatePicker
+                      {/* <DatePicker
                         locale={vi}
                         className="w-full rounded-full px-4 py-3 outline-none placeholder-[#002A9E] placeholder:italic placeholder:font-semibold"
                         selected={field.value ? new Date(field.value) : null}
@@ -379,6 +379,9 @@ function Form() {
                         showYearDropdown
                         scrollableYearDropdown
                         yearDropdownItemNumber={100}
+                      /> */}
+                      <CalendarVi
+                        field={field}
                       />
                     </div>
                     {errors.dateOfBirth && <p className="text-sm text-red-500">{errors.dateOfBirth.message}</p>}
@@ -824,7 +827,7 @@ function Form() {
 
           <div className="mb-4">
             <div className="flex flex-col mb-2 relative">
-              <p className="mb-2 font-semibold">Đính kèm cv của bạn* <span className="font-normal text-xs">(Dung lượng tối đa 5MB)</span></p>
+              <p className="mb-2 font-semibold">Đính kèm cv của bạn(không bắt buộc) <span className="font-normal text-xs">(Dung lượng tối đa 5MB)</span></p>
               <label htmlFor="resume" className="w-full py-8 border-2 border-[#ccc] border-dashed text-center hover:bg-[#f8f8f8] duration-300 cursor-pointer">
                 <div className="flex flex-col">
                   <input
