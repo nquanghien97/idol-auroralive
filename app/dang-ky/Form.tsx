@@ -154,8 +154,8 @@ function Form() {
     resolver: yupResolver(formSchema)
   })
 
-  const [isShowInformation, setIsShowInformation] = useState(true);
-  const [isShowPersonalAttributes, setIsShowPersonalAttributes] = useState(false);
+  // const [isShowInformation, setIsShowInformation] = useState(false);
+  // const [isShowPersonalAttributes, setIsShowPersonalAttributes] = useState(false);
 
   // điểm mạnh
   const [strengthsValue, setStrengthsValue] = useState('')
@@ -387,7 +387,7 @@ function Form() {
               />
             </div>
           </div>
-          {isShowInformation && (
+          {/* isShowInformation && ( */}
             <div className="space-y-4">
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
                 <div className="lg:w-[160px]">
@@ -614,14 +614,14 @@ function Form() {
                 />
               </div>
             </div>
-          )}
+          {/* )} */}
 
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <div className="flex justify-center cursor-pointer px-4 py-2 rounded-xl text-[#1877f2] bg-[#ccc] hover:opacity-75 duration-300" onClick={() => setIsShowInformation(pre => !pre)}>
               {isShowInformation ? <p>Thu gọn</p> : <p>Xem thêm</p>}
               {isShowInformation ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
             </div>
-          </div>
+          </div> */}
 
           <div>
             <div className="flex justify-center">
@@ -666,7 +666,7 @@ function Form() {
             </div>
           </div>
 
-          {isShowPersonalAttributes && (
+          {/* {isShowPersonalAttributes && ( */}
             <div className="space-y-4">
               <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
                 <div className="lg:w-[160px]">
@@ -813,14 +813,14 @@ function Form() {
                 </div>
               </div>
             </div>
-          )}
+          {/* )} */}
 
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <div className="flex justify-center cursor-pointer px-4 py-2 rounded-xl text-[#1877f2] bg-[#ccc] hover:opacity-75 duration-300" onClick={() => setIsShowPersonalAttributes(pre => !pre)}>
               <p>Xem thêm</p>
               {isShowPersonalAttributes ? <ArrowDown className="rotate-180 duration-300" color='currentColor' /> : <ArrowDown className="duration-300" color='currentColor' />}
             </div>
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <div className="flex flex-col mb-2 relative">
