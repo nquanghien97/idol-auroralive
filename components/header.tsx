@@ -33,6 +33,9 @@ export function Header() {
             <Link href="/#stories" className="text-sm font-medium hover:text-primary transition-colors">
               Câu chuyện
             </Link>
+            <Link href="/chinh-sach-bao-mat" className="text-sm font-medium hover:text-primary transition-colors">
+              Chính sách bảo mật
+            </Link>
             <Link href="/dang-ky" className="bg-primary hover:bg-primary/90 text-white px-4 py-1 rounded-xl duration-300">
               Ứng tuyển ngay
             </Link>
@@ -47,34 +50,41 @@ export function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 space-y-4">
-            <a
+            <Link
               href="#home"
-              className="block text-sm font-medium hover:text-primary transition-colors"
+              className="block text-sm font-medium hover:text-primary transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Trang chủ
-            </a>
-            <a
+            </Link>
+            <Link
               href="#benefits"
-              className="block text-sm font-medium hover:text-primary transition-colors"
+              className="block text-sm font-medium hover:text-primary transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Quyền lợi
-            </a>
-            <a
+            </Link>
+            <Link
               href="#process"
-              className="block text-sm font-medium hover:text-primary transition-colors"
+              className="block text-sm font-medium hover:text-primary transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Quy trình
-            </a>
-            <a
+            </Link>
+            <Link
               href="#stories"
-              className="block text-sm font-medium hover:text-primary transition-colors"
+              className="block text-sm font-medium hover:text-primary transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Câu chuyện
-            </a>
+            </Link>
+            <Link
+              href="/chinh-sach-bao-mat"
+              className="block text-sm font-medium hover:text-primary transition-colors py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Chính sách bảo mật
+            </Link>
             <Link href="/dang-ky" className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 text-center rounded-sm duration-300">
               Ứng tuyển ngay
             </Link>
