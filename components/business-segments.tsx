@@ -92,7 +92,7 @@ export function BusinessSegments() {
             <Card className="group relative overflow-hidden bg-white border-2 border-[#1877f2]/20 hover:border-[#1877f2]/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
               <div className="relative h-80 overflow-hidden">
                 <img
-                  src="/vietnamese-woman-selling-products-on-livestream-wi.jpg"
+                  src="/6.jpg"
                   alt="Livestream Bán hàng"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -106,45 +106,51 @@ export function BusinessSegments() {
 
               <div className="px-8 pb-8 space-y-2">
                 <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 group-hover:text-[#1877f2] transition-colors duration-300">
-                  Livestream Bán hàng
+                  Tiêu chí tuyển dụng
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                {/* <p className="text-gray-600 leading-relaxed">
                   Bán hàng bằng đam mê – thành công bằng kỹ năng.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
                   <span className="text-[#1877f2]">AURORA LIVE</span> đồng hành cùng bạn trên hành trình trở thành chuyên gia livestream bán hàng, nơi bạn không chỉ kiếm được thu nhập cao mà còn xây dựng thương hiệu cá nhân uy tín.
-                </p>
+                </p> */}
 
                 <ul className="space-y-3 pt-4">
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Livestream giới thiệu sản phẩm trực tiếp, tiếp cận hàng nghìn khách hàng</span>
+                    <span className="text-gray-600">Độ tuổi: Nữ từ 18 – 28 tuổi, chưa kết hôn, có đam mê với lĩnh vực Livestream và giải trí.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Hoa hồng cạnh tranh, thu nhập không giới hạn</span>
+                    <span className="text-gray-600">Địa điểm làm việc: Trụ sở Nguyễn Khuyến – Hà Đông – Hà Nội.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Đào tạo kỹ năng bán hàng, thuyết trình và chốt đơn chuyên nghiệp</span>
+                    <span className="text-gray-600">Ngoại hình: Ưa nhìn, gương mặt sáng, thân thiện và tự tin trước ống kính.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Xây dựng thương hiệu cá nhân và hình ảnh người bán hàng chuyên nghiệp</span>
+                    <span className="text-gray-600">Tính cách: Năng động, hòa đồng, có khả năng giao tiếp và tương tác tự nhiên với khán giả.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Cơ hội hợp tác với nhãn hàng, ký kết hợp đồng quảng cáo và đại diện thương hiệu</span>
+                    <span className="text-gray-600">Tác phong: Tinh thần chuyên nghiệp – cầu tiến – trách nhiệm, mong muốn gắn bó và phát triển sự nghiệp lâu dài trong môi trường chuyên nghiệp.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
+                    </div>
+                    <span className="text-gray-600">Ưu tiên: Ứng viên có kinh nghiệm Livestream, KOC, bán hàng online hoặc từng hoạt động trong lĩnh vực nghệ thuật, giải trí.</span>
                   </li>
                 </ul>
               </div>

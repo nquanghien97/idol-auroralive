@@ -21,19 +21,19 @@ const slides = [
     highlight: "Quyền lợi đầy đủ ngay cả khi làm việc tại nhà",
   },
   {
-    image: "/professional-livestream-studio-with-ring-lights-and.jpg",
+    image: "/5.jpg",
     title: "Studio chuyên nghiệp & Thiết bị hiện đại",
     subtitle: "Đào tạo miễn phí • Hỗ trợ 24/7 • Môi trường an toàn",
     highlight: "Quyền lợi được bảo vệ bởi pháp luật",
   },
   {
-    image: "/happy-vietnamese-idol-celebrating-success-with-conf.jpg",
-    title: "Thu nhập 15-50 triệu/tháng",
+    image: "/3.png",
+    title: "Lương cứng tối thiểu 15 triệu/tháng",
     subtitle: "Lương cơ bản + Hoa hồng • Thưởng hiệu suất",
     highlight: "Bảo đảm thu nhập ổn định – lương cứng tối thiểu 8 triệu/tháng + hoa hồng",
   },
   {
-    image: "/glamorous-female-streamer-with-professional-makeup.jpg",
+    image: "/8.png",
     title: "Đào tạo chuyên nghiệp từ A-Z",
     subtitle: "Makeup • Styling • Kỹ năng livestream • Xây dựng thương hiệu cá nhân",
     highlight: "Đào tạo, hỗ trợ 100% tất cả các thành viên",
@@ -170,7 +170,7 @@ export function HeroSlider() {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0">
               <img src={slide.image || "/placeholder.svg"} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/45 via-white/25 to-white/5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/65 via-white/45 to-white/2" />
               <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
             </div>
 
@@ -191,7 +191,7 @@ export function HeroSlider() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-lg lg:text-2xl text-gray-600 leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700 delay-200">
+                <p className="text-lg lg:text-2xl leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700 delay-200 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
                   {slide.subtitle}
                 </p>
 
