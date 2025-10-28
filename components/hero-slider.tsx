@@ -9,13 +9,13 @@ import Link from "next/link"
 
 const slides = [
   {
-    image: "/thu-ha.jpg",
+    image: "/1.png",
     title: "Trở thành ngôi sao livestream hàng đầu",
     subtitle: "Idol Giải trí & Bán hàng • Hợp đồng chính thức • Bảo hiểm đầy đủ • Làm việc tại nhà",
     highlight: "Công ty cam kết Hợp Đồng Lao Động & BHXH đầy đủ",
   },
   {
-    image: "/lam-viec-tai-nha.jpg",
+    image: "/4.png",
     title: "Làm việc tại nhà 100% linh hoạt",
     subtitle: "Livestream tại nhà • Thiết bị hỗ trợ đầy đủ • Tự do thời gian",
     highlight: "Quyền lợi đầy đủ ngay cả khi làm việc tại nhà",
@@ -170,7 +170,7 @@ export function HeroSlider() {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0">
               <img src={slide.image || "/placeholder.svg"} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/50" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/45 via-white/25 to-white/5" />
               <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
             </div>
 
@@ -186,7 +186,7 @@ export function HeroSlider() {
                   </div>
                 </div>
                 {/* Title */}
-                <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-in fade-in slide-in-from-left-6 duration-700 delay-100 text-gray-900">
+                <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-in fade-in slide-in-from-left-6 duration-700 delay-100 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
                   {slide.title}
                 </h1>
 
