@@ -11,7 +11,9 @@ export function BusinessSegments() {
         {/* Section Header */}
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl lg:text-5xl font-bold text-balance text-gray-900">Lĩnh Vực Hoạt Động</h2>
+            <h2 className="inline-block text-3xl lg:text-5xl font-bold text-balance leading-[1.5] bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
+              Lĩnh Vực Hoạt Động
+            </h2>
             <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto text-pretty">
               AURORA LIVE cung cấp cơ hội nghề nghiệp trong cả hai lĩnh vực livestream hàng đầu tại Việt Nam
             </p>

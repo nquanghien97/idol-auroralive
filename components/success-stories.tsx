@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card"
 import { Quote } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel"
+import Image from "next/image"
 
 const stories = [
   {
@@ -26,6 +28,29 @@ const stories = [
     quote: "Môi trường làm việc vui vẻ, đồng nghiệp thân thiện. Mình được hỗ trợ tận tình từ ngày đầu tiên!",
     stats: "100K+ followers",
   },
+  {
+    name: "Lan Nhi",
+    role: "Idol livestream",
+    image: "/idol-1.jpg",
+    quote:
+      "Trước đây mình chỉ nghĩ livestream là làm cho vui, nhưng khi vào AURORA LIVE thì mọi thứ thay đổi hẳn. Mình được đào tạo từ cách nói chuyện, chọn góc quay cho đến cách xây hình ảnh cá nhân. Bây giờ thu nhập của mình ổn định 25–30 triệu/tháng, có hợp đồng và bảo hiểm rõ ràng nên mình yên tâm làm lâu dài.",
+    stats: "500K+ followers",
+  },
+  {
+    name: "Hà My",
+    role: "Idol mới",
+    image: "/idol-2.jpg",
+    quote:
+      "Ấn tượng đầu tiên của mình là môi trường cực kỳ chuyên nghiệp. Mỗi khi gặp vấn đề kỹ thuật hay nội dung, đều có mentor và team hỗ trợ 24/7. Mình chưa từng nghĩ làm Idol livestream lại được công ty quan tâm quyền lợi đầy đủ như vậy – ký HĐLĐ, đóng BHXH, lương cứng hàng tháng",
+    stats: "200K+ followers",
+  },
+  {
+    name: "Yến Anh",
+    role: "New Talent",
+    image: "/idol-3.jpg",
+    quote: "Mình làm tại studio Hà Đông, được hỗ trợ ánh sáng, thiết bị, backdrop để livestream. Không cần lo đầu tư ban đầu. Aurora giúp mình học được cách nói chuyện cuốn hút, có nhiều fan quý mến. mà quan trọng là thu nhập thật – trung bình 35 triệu/tháng.",
+    stats: "100K+ followers",
+  },
 ]
 
 export function SuccessStories() {
@@ -43,31 +68,45 @@ export function SuccessStories() {
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {stories.map((story, index) => (
-            <ScrollReveal key={index} animation="scale-up" delay={index * 150}>
-              <Card className="overflow-hidden border-border hover:shadow-xl transition-shadow">
-                <div className="aspect-square relative overflow-hidden">
-                  <img
-                    src={story.image || "/placeholder.svg"}
-                    alt={story.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="text-xl font-bold text-card-foreground">{story.name}</div>
-                    <div className="text-sm text-primary font-medium">{story.role}</div>
+        <Carousel
+          className="relative w-full"
+          opts={{
+            align: 'start',
+            containScroll: 'trimSnaps',
+            slidesToScroll: 1,
+            loop: false,
+            dragFree: true,
+          }}
+        >
+          <CarouselContent>
+            {stories.map((story, index) => (
+              <CarouselItem key={index} className="overflow-hidden border-border hover:shadow-xl transition-shadow">
+                <ScrollReveal animation="scale-up" delay={150}>
+                  <div className="aspect-square relative overflow-hidden">
+                    <img
+                      src={story.image || "/placeholder.svg"}
+                      alt={story.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="text-xl font-bold text-card-foreground">{story.name}</div>
+                      <div className="text-sm text-primary font-medium">{story.role}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <Quote className="h-8 w-8 text-primary/20 mb-4" />
-                  <p className="text-muted-foreground leading-relaxed mb-4 italic">"{story.quote}"</p>
-                  <div className="text-sm font-medium text-accent">{story.stats}</div>
-                </div>
-              </Card>
-            </ScrollReveal>
-          ))}
-        </div>
+                  <div className="p-6">
+                    <Quote className="h-8 w-8 text-primary/20 mb-4" />
+                    <p className="text-muted-foreground leading-relaxed mb-4 italic">"{story.quote}"</p>
+                    <div className="text-sm font-medium text-accent">{story.stats}</div>
+                  </div>
+                </ScrollReveal>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   )

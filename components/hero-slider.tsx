@@ -4,8 +4,6 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight, Shield } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 
 const slides = [
   {
@@ -15,13 +13,7 @@ const slides = [
     highlight: "Công ty cam kết Hợp Đồng Lao Động & BHXH đầy đủ",
   },
   {
-    image: "/4.png",
-    title: "Làm việc tại nhà 100% linh hoạt",
-    subtitle: "Livestream tại nhà • Thiết bị hỗ trợ đầy đủ • Tự do thời gian",
-    highlight: "Quyền lợi đầy đủ ngay cả khi làm việc tại nhà",
-  },
-  {
-    image: "/5.jpg",
+    image: "/5.png",
     title: "Studio chuyên nghiệp & Thiết bị hiện đại",
     subtitle: "Đào tạo miễn phí • Hỗ trợ 24/7 • Môi trường an toàn",
     highlight: "Quyền lợi được bảo vệ bởi pháp luật",
@@ -39,8 +31,8 @@ const slides = [
     highlight: "Đào tạo, hỗ trợ 100% tất cả các thành viên",
   },
   {
-    image: "/successful-livestreamer-showing-products-with-beaut.jpg",
-    title: "Livestream bán hàng - Thu nhập khủng",
+    image: "/4.png",
+    title: "Livestream Bài Bản – Phát Triển Bản Thân, Ổn Định Thu Nhập",
     subtitle: "Sản phẩm đa dạng • Hoa hồng hấp dẫn • Hỗ trợ tận tình",
     highlight: "Cơ hội hợp tác cùng các nhãn hàng lớn và KOL nổi tiếng",
   },
@@ -170,8 +162,8 @@ export function HeroSlider() {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0">
               <img src={slide.image || "/placeholder.svg"} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/65 via-white/45 to-white/2" />
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/65 via-white/45 to-white/25" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[black]/80 via-transparent to-transparent" />
             </div>
 
             {/* Highlight Badge - Top Left */}
@@ -186,12 +178,22 @@ export function HeroSlider() {
                   </div>
                 </div>
                 {/* Title */}
-                <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-in fade-in slide-in-from-left-6 duration-700 delay-100 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
+                <h1
+                  style={{
+                    WebkitTextStroke: '2px #fff',
+                  }}
+                  className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-in fade-in slide-in-from-left-6 duration-700 delay-100 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent drop-shadow-[2px_2px_4px_rgba(0,0,0,0.4)]"
+                >
                   {slide.title}
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-lg lg:text-2xl leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700 delay-200 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
+                <p
+                  style={{
+                    WebkitTextStroke: '0.5px #fff',
+                  }}
+                  className="font-bold text-lg lg:text-2xl leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700 delay-200 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent"
+                >
                   {slide.subtitle}
                 </p>
 

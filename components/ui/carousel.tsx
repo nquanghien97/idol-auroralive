@@ -138,13 +138,13 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="overflow-hidden touch-pan-x"
       data-slot="carousel-content"
     >
       <div
         className={cn(
-          'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+          'flex gap-4',
+          orientation === 'horizontal' ? '' : '-mt-4 flex-col',
           className,
         )}
         {...props}
@@ -162,8 +162,10 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       aria-roledescription="slide"
       data-slot="carousel-item"
       className={cn(
-        'min-w-0 shrink-0 grow-0 basis-full',
-        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+        'shrink-0 grow-0',
+        'basis-full sm:basis-1/2 lg:basis-1/4', // mobile=1, tablet=2, desktop=4
+        'hover:bg-white duration-300',
+        // orientation === 'horizontal' ? 'pl-4' : 'pt-4',
         className,
       )}
       {...props}
@@ -185,9 +187,9 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-12 rounded-full',
         orientation === 'horizontal'
-          ? 'top-1/2 -left-12 -translate-y-1/2'
+          ? 'top-1/2 -left-4 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className,
       )}
@@ -215,9 +217,9 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-12 rounded-full',
         orientation === 'horizontal'
-          ? 'top-1/2 -right-12 -translate-y-1/2'
+          ? 'top-1/2 -right-4 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className,
       )}
@@ -225,7 +227,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <ArrowRight size={32} />
       <span className="sr-only">Next slide</span>
     </Button>
   )
