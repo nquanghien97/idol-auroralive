@@ -23,18 +23,9 @@ const benefits = [
     image: "/bao-hiem-xa-hoi.jpg",
   },
   {
-    icon: Home,
-    title: "Làm việc tại nhà",
-    description: "Linh hoạt 100% thời gian và địa điểm - livestream tại nhà với thiết bị hỗ trợ đầy đủ",
-    color: "text-primary",
-    bgColor: "bg-primary/10",
-    featured: true,
-    image: "/lam-viec-tai-nha.jpg",
-  },
-  {
     icon: DollarSign,
-    title: "Thu nhập đảm bảo tối thiểu 8 triệu/tháng",
-    description: "Lương cơ bản đảm bảo từ 8 triệu + hoa hồng hấp dẫn, thu nhập thực tế 15-50 triệu/tháng",
+    title: "Thu nhập đảm bảo tối thiểu 15 triệu/tháng",
+    description: "Lương cơ bản đảm bảo từ 15 triệu + hoa hồng hấp dẫn, thu nhập thực tế 15-50 triệu/tháng",
     color: "text-accent",
     bgColor: "bg-accent/10",
     featured: true,
@@ -80,8 +71,8 @@ export function BenefitsGrid() {
       <div className="container mx-auto px-4 lg:px-8">
         <ScrollReveal animation="fade-up">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance text-gray-900">
-              Tại sao chọn <span className="text-[#1877f2]">AURORA LIVE</span>?
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">
+              Tại sao chọn AURORA LIVE?
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
               AURORA LIVE – Bước vào môi trường chuyên nghiệp trong ngành livestream, nơi mọi quyền lợi của bạn được đảm bảo bằng hợp đồng và pháp luật, cùng đội ngũ hỗ trợ tận tâm đồng hành trên mọi phương diện – từ công việc, đào tạo đến phát triển cá nhân.

@@ -9,7 +9,7 @@ const slides = [
   {
     image: "/1.png",
     title: "Trở thành ngôi sao livestream hàng đầu",
-    subtitle: "Idol Giải trí & Bán hàng • Hợp đồng chính thức • Bảo hiểm đầy đủ • Làm việc tại nhà",
+    subtitle: "Idol Giải trí & Bán hàng • Hợp đồng chính thức • Bảo hiểm đầy đủ",
     highlight: "Công ty cam kết Hợp Đồng Lao Động & BHXH đầy đủ",
   },
   {
@@ -22,7 +22,7 @@ const slides = [
     image: "/3.png",
     title: "Lương cứng tối thiểu 15 triệu/tháng",
     subtitle: "Lương cơ bản + Hoa hồng • Thưởng hiệu suất",
-    highlight: "Bảo đảm thu nhập ổn định – lương cứng tối thiểu 8 triệu/tháng + hoa hồng",
+    highlight: "Bảo đảm thu nhập ổn định – lương cứng tối thiểu 15 triệu/tháng + hoa hồng",
   },
   {
     image: "/8.png",

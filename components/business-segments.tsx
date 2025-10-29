@@ -122,37 +122,37 @@ export function BusinessSegments() {
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Độ tuổi: Nữ từ 18 – 28 tuổi, chưa kết hôn, có đam mê với lĩnh vực Livestream và giải trí.</span>
+                    <span className="text-gray-600"><strong>Độ tuổi:</strong> Nữ từ 18 – 28 tuổi, chưa kết hôn, có đam mê với lĩnh vực Livestream và giải trí.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Địa điểm làm việc: Trụ sở Nguyễn Khuyến – Hà Đông – Hà Nội.</span>
+                    <span className="text-gray-600"><strong>Địa điểm làm việc:</strong> Trụ sở Nguyễn Khuyến – Hà Đông – Hà Nội.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Ngoại hình: Ưa nhìn, gương mặt sáng, thân thiện và tự tin trước ống kính.</span>
+                    <span className="text-gray-600"><strong>Ngoại hình:</strong> Ưa nhìn, gương mặt sáng, thân thiện và tự tin trước ống kính.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Tính cách: Năng động, hòa đồng, có khả năng giao tiếp và tương tác tự nhiên với khán giả.</span>
+                    <span className="text-gray-600"><strong>Tính cách:</strong> Năng động, hòa đồng, có khả năng giao tiếp và tương tác tự nhiên với khán giả.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Tác phong: Tinh thần chuyên nghiệp – cầu tiến – trách nhiệm, mong muốn gắn bó và phát triển sự nghiệp lâu dài trong môi trường chuyên nghiệp.</span>
+                    <span className="text-gray-600"><strong>Tác phong:</strong> Tinh thần chuyên nghiệp – cầu tiến – trách nhiệm, mong muốn gắn bó và phát triển sự nghiệp lâu dài trong môi trường chuyên nghiệp.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="h-6 w-6 rounded-full bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="h-2 w-2 rounded-full bg-[#1877f2]" />
                     </div>
-                    <span className="text-gray-600">Ưu tiên: Ứng viên có kinh nghiệm Livestream, KOC, bán hàng online hoặc từng hoạt động trong lĩnh vực nghệ thuật, giải trí.</span>
+                    <span className="text-gray-600"><strong>Ưu tiên:</strong> Ứng viên có kinh nghiệm Livestream, KOC, bán hàng online hoặc từng hoạt động trong lĩnh vực nghệ thuật, giải trí.</span>
                   </li>
                 </ul>
               </div>

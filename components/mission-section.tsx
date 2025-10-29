@@ -86,7 +86,7 @@ export function MissionSection() {
       <div className="container mx-auto max-w-6xl">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance text-gray-900">Giá Trị Của Chúng Tôi</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">Giá Trị Của Chúng Tôi</h2>
             <div className="w-24 h-1 bg-[#1877f2] mx-auto" />
           </div>
         </ScrollReveal>
@@ -150,7 +150,7 @@ export function MissionSection() {
             <h3 className="text-3xl md:text-4xl font-bold mb-8 text-balance">"Xây Dựng Tương Lai Cùng AURORA"</h3>
             <div className="space-y-6 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
               <p className="text-blue-50">
-                Tại AURORA LIVE, chúng tôi không chỉ tuyển dụng nhân viên – chúng tôi xây dựng cộng đồng những người sáng tạo nội dung chuyên nghiệp. Với hợp đồng lao động chính thức, bảo hiểm đầy đủ và môi trường làm việc linh hoạt tại nhà, chúng tôi cam kết mang đến cho bạn sự nghiệp ổn định và cơ hội phát triển bền vững trong ngành công nghiệp livestream đang bùng nổ.
+                Tại AURORA LIVE, chúng tôi không chỉ tuyển dụng nhân viên – chúng tôi xây dựng cộng đồng những người sáng tạo nội dung chuyên nghiệp. Với hợp đồng lao động chính thức, bảo hiểm đầy đủ và môi trường làm việc linh hoạt, chúng tôi cam kết mang đến cho bạn sự nghiệp ổn định và cơ hội phát triển bền vững trong ngành công nghiệp livestream đang bùng nổ.
               </p>
             </div>
           </div>

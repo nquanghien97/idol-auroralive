@@ -35,8 +35,8 @@ export function ProcessSection() {
       <div className="container mx-auto px-4 lg:px-8">
         <ScrollReveal animation="fade-up">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance">
-              Quy trình tuyển dụng <span className="text-primary">đơn giản</span>
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">
+              Quy trình tuyển dụng đơn giản
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Chỉ 4 bước để bắt đầu hành trình trở thành idol livestream chuyên nghiệp

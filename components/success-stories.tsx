@@ -59,8 +59,8 @@ export function SuccessStories() {
       <div className="container mx-auto px-4 lg:px-8">
         <ScrollReveal animation="fade-up">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance">
-              Câu chuyện <span className="text-primary">thành công</span>
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">
+              Câu chuyện thành công
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Hàng trăm idol đã thay đổi cuộc sống của họ cùng AURORA LIVE
