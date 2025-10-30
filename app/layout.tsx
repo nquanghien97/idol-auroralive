@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-16 lg:scroll-pt-20">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-
+        {/* google pixel */}
         <Script
           id="fb-pixel-script"
           strategy="afterInteractive"
