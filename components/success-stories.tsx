@@ -55,11 +55,11 @@ const stories = [
 
 export function SuccessStories() {
   return (
-    <section id="stories" className="py-8 bg-muted/30">
+    <section id="stories" className="pb-8 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <ScrollReveal animation="fade-up">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <h2 className="text-3xl lg:text-5xl font-bold text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">
               Câu chuyện thành công
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -75,7 +75,6 @@ export function SuccessStories() {
             containScroll: 'trimSnaps',
             slidesToScroll: 1,
             loop: false,
-            dragFree: true,
           }}
         >
           <CarouselContent>

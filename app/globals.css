@@ -242,3 +242,16 @@
 .css-t3ipsp-control {
   height: 100%;
 }
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: floatUpDown 1s ease-in-out infinite;
+}

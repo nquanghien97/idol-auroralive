@@ -258,7 +258,7 @@ function Form() {
   return (
     <>
       <Card className="p-8 border-border bg-card">
-        <h3 className="text-3xl lg:text-6xl font-bold mb-2 lg:mb-6 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
+        <h3 className="text-3xl lg:text-6xl font-bold mb-2 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
             <div className="lg:w-[160px]">
@@ -828,7 +828,7 @@ function Form() {
           <div className="mb-4">
             <div className="flex flex-col mb-2 relative">
               <p className="mb-2 font-semibold">Đính kèm cv của bạn(không bắt buộc) <span className="font-normal text-xs">(Dung lượng tối đa 5MB)</span></p>
-              <label htmlFor="resume" className="w-full py-8 border-2 border-[#ccc] border-dashed text-center hover:bg-[#f8f8f8] duration-300 cursor-pointer">
+              <label htmlFor="resume" className="w-full mb-8 border-2 border-[#ccc] border-dashed text-center hover:bg-[#f8f8f8] duration-300 cursor-pointer">
                 <div className="flex flex-col">
                   <input
                     accept="application/pdf"

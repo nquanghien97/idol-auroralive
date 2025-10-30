@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import "react-datepicker/dist/react-datepicker.css";
 import PhoneIcon from './assets/PhoneIcon'
+import { ArrowBigDown, ArrowDownToLine } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Công ty Aurora Live',
@@ -34,6 +35,12 @@ export default function RootLayout({
           {/* <Link href="https://www.facebook.com/auroralive.vn" className="w-16 h-16 rounded-full bg-[#1877f2] flex justify-center items-center shadow-custom" target='blank'>
             <Image src="/Facebook_Messenger_logo.png" alt="Facebook_Messenger_logo" width={40} height={40} />
           </Link> */}
+        </div>
+        <div className="fixed bottom-4 left-4 z-[100] animate-float">
+          <Link href="/#dang-ky" className="px-4 py-2 rounded-2xl bg-[#1877f2] flex justify-center items-center mb-4 shadow-custom text-white">
+            <span className="font-semibold">Đăng ký ngay</span>
+            <ArrowDownToLine />
+          </Link>
         </div>
       </body>
     </html>

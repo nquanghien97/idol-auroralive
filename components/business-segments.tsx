@@ -10,7 +10,7 @@ export function BusinessSegments() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <ScrollReveal animation="fade-up">
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-8 space-y-4">
             <h2 className="inline-block text-3xl lg:text-5xl font-bold text-balance leading-[1.5] bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent">
               Lĩnh Vực Hoạt Động
             </h2>

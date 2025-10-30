@@ -53,7 +53,7 @@ function page() {
       </main>
 
       {/* Footer */}
-      <div className="bg-slate-100 py-8 px-4 mt-12">
+      <div className="bg-slate-100 mb-8 px-4 mt-12">
         <div className="max-w-4xl mx-auto text-center text-slate-600 text-sm">
           <p>© 2025 Công ty của bạn. Tất cả quyền được bảo lưu.</p>
         </div>

@@ -7,6 +7,7 @@ import { ProcessSection } from "@/components/process-section"
 import { SuccessStories } from "@/components/success-stories"
 import { CTASection } from "@/components/ui/cta-section"
 import { Footer } from "@/components/footer"
+import { ToastContainer } from "react-toastify"
 
 export default function Home() {
   return (
@@ -26,6 +27,8 @@ export default function Home() {
         <CTASection />
         <Footer />
       </main>
+
+      <ToastContainer />
     </>
   )
 }

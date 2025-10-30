@@ -10,6 +10,7 @@ import { CalendarVi } from '../datepicker';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Textarea } from '../textarea';
+import { toast } from 'react-toastify';
 
 const formSchema = yup.object({
 
@@ -61,22 +62,29 @@ function Form() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data)
+  const onSubmit = async (data: FormValues) => {
+    setIsLoading(true)
+    try {
+      if(!process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL) {
+        toast.error('Invalid google url')
+        return;
+      }
+      await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      toast.success('Ứng tuyển thành công!')
+    } catch (err) {
+      toast.error('Có lỗi xảy ra, vui lòng thử lại')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
     <Card className="p-8 border-border bg-card">
-      <h3 className="text-3xl lg:text-6xl font-bold mb-2 lg:mb-6 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
+      <h3 className="text-3xl lg:text-6xl font-bold mb-2 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-
-        <div>
-          <div className="flex justify-center">
-            <div className="flex gap-1 bg-[#1877f2] text-[#1877f2] rounded-xl py-2 justify-center w-full lg:w-1/2">
-              <p className="text-white font-bold text-xl">THÔNG TIN CƠ BẢN</p>
-            </div>
-          </div>
-        </div>
         <div className="space-y-4 mb-8">
           <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
             <div className="lg:w-[160px]">

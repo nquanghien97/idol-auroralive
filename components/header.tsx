@@ -36,7 +36,7 @@ export function Header() {
             <Link href="/chinh-sach-bao-mat" className="text-sm font-medium hover:text-primary transition-colors">
               Chính sách bảo mật
             </Link>
-            <Link href="/dang-ky" className="bg-primary hover:bg-primary/90 text-white px-4 py-1 rounded-xl duration-300">
+            <Link href="/#dang-ky" className="bg-primary hover:bg-primary/90 text-white px-4 py-1 rounded-xl duration-300">
               Ứng tuyển ngay
             </Link>
           </nav>
@@ -85,7 +85,7 @@ export function Header() {
             >
               Chính sách bảo mật
             </Link>
-            <Link href="/dang-ky" className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 text-center rounded-sm duration-300">
+            <Link href="/#dang-ky" className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 text-center rounded-sm duration-300">
               Ứng tuyển ngay
             </Link>
           </nav>

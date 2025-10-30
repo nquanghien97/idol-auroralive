@@ -85,13 +85,13 @@ export function MissionSection() {
     <section className="relative p-4 overflow-hidden bg-white">
       <div className="container mx-auto max-w-6xl">
         <ScrollReveal animation="fade-up">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">Giá Trị Của Chúng Tôi</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">Giá Trị Của Chúng Tôi</h2>
             <div className="w-24 h-1 bg-[#1877f2] mx-auto" />
           </div>
         </ScrollReveal>
 
-        <div className="relative mb-16">
+        <div className="relative mb-8">
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
@@ -106,7 +106,7 @@ export function MissionSection() {
                   className="flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-center"
                 >
                   <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:border-[#1877f2]/30 transition-all duration-300 hover:-translate-y-1 h-full">
-                    <div className="w-16 h-16 bg-[#1877f2] rounded-xl flex items-center justify-center mb-6 mx-auto">
+                    <div className="w-16 h-16 bg-[#1877f2] rounded-xl flex items-center justify-center mx-auto">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-4 text-center text-gray-900">{slide.title}</h3>
@@ -147,7 +147,7 @@ export function MissionSection() {
 
         <ScrollReveal animation="scale-up" delay={400}>
           <div className="bg-gradient-to-r from-[#1877f2] to-[#0c63d4] rounded-3xl py-12 px-4 text-white text-center shadow-2xl">
-            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-balance">"Xây Dựng Tương Lai Cùng AURORA"</h3>
+            <h3 className="text-3xl md:text-4xl font-bold pb-8 text-balance">"Xây Dựng Tương Lai Cùng AURORA"</h3>
             <div className="space-y-6 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
               <p className="text-blue-50">
                 Tại AURORA LIVE, chúng tôi không chỉ tuyển dụng nhân viên – chúng tôi xây dựng cộng đồng những người sáng tạo nội dung chuyên nghiệp. Với hợp đồng lao động chính thức, bảo hiểm đầy đủ và môi trường làm việc linh hoạt, chúng tôi cam kết mang đến cho bạn sự nghiệp ổn định và cơ hội phát triển bền vững trong ngành công nghiệp livestream đang bùng nổ.
