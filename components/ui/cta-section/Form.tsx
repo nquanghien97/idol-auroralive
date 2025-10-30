@@ -37,11 +37,17 @@ const formSchema = yup.object({
     .required('Vui lòng nhập link Facebook cá nhân'),
 
   experience: yup
-    .string(),
+    .string()
+    .required('Vui lòng nhập kinh nghiệm'),
 
   introduce: yup
     .string()
-    .required('Vui lòng giới thiệu bản thân')
+    .required('Vui lòng giới thiệu bản thân'),
+
+  notMarried: yup
+    .boolean()
+    .oneOf([true], 'Vui lòng xác nhận rằng bạn chưa kết hôn')
+    .required('Vui lòng xác nhận rằng bạn chưa kết hôn')
 });
 
 interface FormValues {
@@ -50,8 +56,9 @@ interface FormValues {
   dateOfBirth: Date;
   tiktokLink: string;
   facebookLink: string;
-  experience?: string;
+  experience: string;
   introduce: string;
+  notMarried: boolean;
 }
 
 function Form() {
@@ -65,7 +72,7 @@ function Form() {
   const onSubmit = async (data: FormValues) => {
     setIsLoading(true)
     try {
-      if(!process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL) {
+      if (!process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL) {
         toast.error('Invalid google url')
         return;
       }
@@ -83,10 +90,10 @@ function Form() {
 
   return (
     <Card className="p-8 border-border bg-card">
-      <h3 className="text-3xl lg:text-6xl font-bold mb-2 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
+      <h3 className="text-2xl lg:text-6xl font-bold mb-2 text-center text-[#1877f2]">HỒ SƠ ỨNG TUYỂN</h3>
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="space-y-4 mb-8">
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+        <div className="space-y-4">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Họ tên <span className="text-[red]">*</span></p>
             </div>
@@ -94,7 +101,7 @@ function Form() {
               control={control}
               name="fullName"
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <Input
                     {...field}
                     value={field.value || ''}
@@ -109,7 +116,7 @@ function Form() {
               )}
             />
           </div>
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Số điện thoại <span className="text-[red]">*</span></p>
             </div>
@@ -117,7 +124,7 @@ function Form() {
               control={control}
               name="phoneNumber"
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <Input
                     {...field}
                     value={field.value || ''}
@@ -132,7 +139,7 @@ function Form() {
               )}
             />
           </div>
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Ngày sinh <span className="text-[red]">*</span></p>
             </div>
@@ -142,7 +149,7 @@ function Form() {
               control={control}
               defaultValue={new Date()}
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <div className="border border-[#e1ddde] rounded-lg w-full">
                     <CalendarVi
                       field={field}
@@ -154,7 +161,7 @@ function Form() {
             />
           </div>
 
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Link tiktok <span className="text-[red]">*</span></p>
             </div>
@@ -162,7 +169,7 @@ function Form() {
               control={control}
               name="tiktokLink"
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <Input
                     {...field}
                     value={field.value || ''}
@@ -178,7 +185,7 @@ function Form() {
             />
           </div>
 
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Link Facebook <span className="text-[red]">*</span></p>
             </div>
@@ -186,7 +193,7 @@ function Form() {
               control={control}
               name="facebookLink"
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <Input
                     {...field}
                     value={field.value || ''}
@@ -202,7 +209,7 @@ function Form() {
             />
           </div>
 
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Kinh nghiệm livestream (nếu có)</p>
             </div>
@@ -210,7 +217,7 @@ function Form() {
               control={control}
               name="experience"
               render={({ field }) => (
-                <div className="space-y-1 h-12 w-full">
+                <div className="space-y-1 w-full">
                   <Input
                     {...field}
                     value={field.value || ''}
@@ -226,7 +233,7 @@ function Form() {
             />
           </div>
 
-          <div className="flex gap-2 lg:items-center flex-col lg:flex-row mb-8">
+          <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
               <p>Giới thiệu về bản thân</p>
             </div>
@@ -243,10 +250,25 @@ function Form() {
               )}
             />
           </div>
+
+          <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="notMarried"
+            {...register('notMarried')}
+            className="w-5 h-5 accent-[#1877f2] cursor-pointer"
+          />
+          <label htmlFor="notMarried" className="text-base cursor-pointer">
+            Tôi xác nhận rằng <span className="font-semibold text-[#1877f2]">tôi chưa kết hôn</span>
+          </label>
+        </div>
+        {errors.notMarried && (
+          <p className="text-sm text-red-500 mb-4">{errors.notMarried.message}</p>
+        )}
         </div>
 
 
-        <Button type="submit" size="lg" className="w-full h-12 bg-primary hover:bg-primary/90 cursor-pointer" disabled={isLoading}>
+        <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 cursor-pointer" disabled={isLoading}>
           {isLoading ? (
             <>
               <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin" />

@@ -180,7 +180,7 @@ export function HeroSlider() {
                 {/* Title */}
                 <h1
                   style={{
-                    WebkitTextStroke: '2px #fff',
+                    WebkitTextStroke: '0.05rem #fff',
                   }}
                   className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-in fade-in slide-in-from-left-6 duration-700 delay-100 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent drop-shadow-[2px_2px_4px_rgba(0,0,0,0.4)]"
                 >
@@ -190,7 +190,7 @@ export function HeroSlider() {
                 {/* Subtitle */}
                 <p
                   style={{
-                    WebkitTextStroke: '0.5px #fff',
+                    WebkitTextStroke: '0.01rem #fff',
                   }}
                   className="font-bold text-lg lg:text-2xl leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700 delay-200 bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent"
                 >
