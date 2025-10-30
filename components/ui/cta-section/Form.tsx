@@ -11,6 +11,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Textarea } from '../textarea';
 import { toast } from 'react-toastify';
+import { formatDate } from '@/utils/formatDate';
+import { formatDateWithoutHours } from '@/utils/formatDateWithoutHours';
 
 const formSchema = yup.object({
 
@@ -76,9 +78,13 @@ function Form() {
         toast.error('Invalid google url')
         return;
       }
+      const dateOfBirthFormat = formatDateWithoutHours(data.dateOfBirth)
       await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+          ...data,
+          dateOfBirth: dateOfBirthFormat
+        })
       })
       toast.success('Ứng tuyển thành công!')
     } catch (err) {
