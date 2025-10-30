@@ -50,7 +50,7 @@ export function CTASection() {
                     </div>
                     <div>
                       <div className="font-medium">Địa chỉ</div>
-                      <div className="text-muted-foreground">LÀM VIỆC TẠI: NGÕ 82, NGUYỄN KHUYẾN, ĐÔNG</div>
+                      <div className="text-muted-foreground">Làm việc: Ngõ 82, Nguyễn Khuyến, Hà Đông</div>
                     </div>
                   </div>
                 </div>
