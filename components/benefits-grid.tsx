@@ -71,7 +71,7 @@ export function BenefitsGrid() {
       <div className="container mx-auto px-4 lg:px-8">
         <ScrollReveal animation="fade-up">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">
               Tại sao chọn AURORA LIVE?
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">

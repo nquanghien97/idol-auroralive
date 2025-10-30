@@ -5,7 +5,7 @@ import { MissionSection } from "@/components/mission-section"
 import { BenefitsGrid } from "@/components/benefits-grid"
 import { ProcessSection } from "@/components/process-section"
 import { SuccessStories } from "@/components/success-stories"
-import { CTASection } from "@/components/cta-section"
+import { CTASection } from "@/components/ui/cta-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {

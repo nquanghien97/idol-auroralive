@@ -43,7 +43,9 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">Liên hệ</h4>
             <ul className="space-y-2 text-secondary-foreground/70">
-              <li>Hotline: 081 898 1619</li>
+              <li>
+                <a href="tel:0867059120">Hotline: 0867 059 120</a>
+              </li>
               <li>Email: auroravn@gmail.com</li>
               <li>Địa chỉ: Số 5 ngõ 82 đường Nguyễn Khuyến, Phường Hà Đông, TP Hà Nội</li>
             </ul>

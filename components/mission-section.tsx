@@ -86,7 +86,7 @@ export function MissionSection() {
       <div className="container mx-auto max-w-6xl">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block">Giá Trị Của Chúng Tôi</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance bg-gradient-to-r from-[#ea0094] via-[#006fea] to-[#67b7ff] bg-clip-text text-transparent inline-block leading-[1.5]">Giá Trị Của Chúng Tôi</h2>
             <div className="w-24 h-1 bg-[#1877f2] mx-auto" />
           </div>
         </ScrollReveal>
