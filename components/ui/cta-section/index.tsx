@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowRight, Mail, Phone } from "lucide-react"
+import { ArrowRight, Mail, MapPin, Phone, PinIcon } from "lucide-react"
 import Link from "next/link"
 import Form from "./Form"
 
@@ -41,6 +41,16 @@ export function CTASection() {
                     <div>
                       <div className="font-medium">Email</div>
                       <div className="text-muted-foreground">auroravn@gmail.com</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                      <MapPin className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Địa chỉ</div>
+                      <div className="text-muted-foreground">LÀM VIỆC TẠI: NGÕ 82, NGUYỄN KHUYẾN, ĐÔNG</div>
                     </div>
                   </div>
                 </div>

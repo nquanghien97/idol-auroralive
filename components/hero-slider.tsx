@@ -33,7 +33,7 @@ const slides = [
   {
     image: "/4.png",
     title: "Livestream Bài Bản – Phát Triển Bản Thân, Ổn Định Thu Nhập",
-    subtitle: "Sản phẩm đa dạng • Hoa hồng hấp dẫn • Hỗ trợ tận tình",
+    subtitle: "",
     highlight: "Cơ hội hợp tác cùng các nhãn hàng lớn và KOL nổi tiếng",
   },
   {

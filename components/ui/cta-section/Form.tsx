@@ -235,7 +235,7 @@ function Form() {
 
           <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
             <div className="lg:w-[160px]">
-              <p>Giới thiệu về bản thân</p>
+              <p>Giới thiệu về bản thân <span className="text-[red]">*</span></p>
             </div>
             <Controller
               control={control}
