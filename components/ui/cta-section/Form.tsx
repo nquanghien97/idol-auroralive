@@ -40,7 +40,6 @@ const formSchema = yup.object({
 
   experience: yup
     .string()
-    .required('Vui lòng nhập kinh nghiệm'),
 
   introduce: yup
     .string()
@@ -58,7 +57,7 @@ interface FormValues {
   dateOfBirth: Date;
   tiktokLink: string;
   facebookLink: string;
-  experience: string;
+  experience?: string;
   introduce: string;
   notMarried: boolean;
 }
