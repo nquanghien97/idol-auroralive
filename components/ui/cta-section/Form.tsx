@@ -39,7 +39,7 @@ const formSchema = yup.object({
     .required('Vui lòng nhập link Facebook cá nhân'),
 
   experience: yup
-    .string()
+    .string(),
 
   introduce: yup
     .string()
